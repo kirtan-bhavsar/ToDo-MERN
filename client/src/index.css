@@ -1,0 +1,46 @@
+/* --bg-primary: #121212;
+--bg-secondary: #1E1E1E;
+--text-primary: #E0E0E0;
+--text-secondary: #A0A0A0;
+--accent-color: #BB86FC;
+--accent-hover: #9E65F5;
+--danger: #CF6679;
+--border-color: #2D2D2D;
+--completed-text: #616161; */
+
+.text-custom-color {
+  color: rgb(31, 103, 161);
+}
+
+.bg-custom-primary-color {
+  background-color: #121212;
+}
+
+.text-custom-heading-color {
+  color: #bb86fc;
+}
+
+.bg-custom-secondary-color {
+  background-color: #1e1e1e;
+}
+
+.text-custom-primary-color {
+  color: #e0e0e0;
+}
+
+.text-custom-secondary-color {
+  color: #a0a0a0;
+}
+
+.btn-custom-color {
+  color: bb86fc;
+}
+
+.btn-custom-hover-color {
+  color: #9e65f5;
+}
+
+input {
+  box-shadow: none !important;
+  outline: none !important;
+}
