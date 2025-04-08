@@ -33,14 +33,66 @@
 }
 
 .btn-custom-color {
-  color: bb86fc;
+  color: #bb86fc;
 }
 
 .btn-custom-hover-color {
   color: #9e65f5;
 }
 
-input {
-  box-shadow: none !important;
-  outline: none !important;
+input:focus {
+  border: 2px solid #9e65f5;
+  outline: none;
+}
+
+.add-todo {
+  width: 50%;
+  gap: 0.5rem;
+}
+
+.addtask-input {
+  display: inline;
+  flex: 1;
+  border: 1px solid #a0a0a0;
+  color: #e0e0e0;
+}
+
+.addtask-input ::placeholder {
+  color: #a0a0a0;
+}
+
+/* .add-todo button {
+  background-color: #bb86fc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  outline: none;
+  border: none;
+}
+
+.add-todo button:hover,
+.add-todo button:focus {
+  background-color: #9e65f5;
+}
+
+.add-todo button:active {
+  background-color: #bb86fc;
+} */
+
+.add-todo button:hover {
+  background-color: #9e65f5;
+  /* background-color: red; */
+}
+
+.add-todo button:active {
+  background-color: #a874ff; /* light-dark shade for on-click feedback
+  /* background-color: blue; light-dark shade for on-click feedback */
+}
+
+.add-todo button {
+  background-color: #bb86fc;
+  border-radius: 8px;
+  padding: 0.5rem;
+  outline: none;
+  border: none;
+  transition: background-color 0.3s ease;
 }
