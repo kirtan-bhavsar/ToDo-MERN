@@ -121,7 +121,16 @@ input:focus {
   border-radius: 5px;
 }
 
-#isTodoCompletedLabel {
+.todo-task .editTask,
+.todo-task .deleteTask {
+  cursor: pointer;
+}
+
+.todo-task .editTask:hover {
+  /* background-color: #1b151e; */
+}
+
+.isTodoCompletedLabel {
   border: 1px solid white;
   width: 15px;
   height: 15px;
@@ -142,7 +151,7 @@ input:focus {
   transform: rotate(-45deg) translate(8px, -15px);
 }
 
-#isTodoCompleted:checked + #isTodoCompletedLabel .line1 {
+.isTodoCompleted:checked + .isTodoCompletedLabel .line1 {
   width: 2px;
   height: 6px;
   transform: rotate(-45deg) translate(6px, -3px);
@@ -158,13 +167,13 @@ input:focus {
   height: 2px;
   transform: rotate(-45deg) translate(20px, -7px);
 }
-#isTodoCompleted:checked + #isTodoCompletedLabel .line2 {
+.isTodoCompleted:checked + .isTodoCompletedLabel .line2 {
   width: 10px;
   height: 2px;
   transform: rotate(-45deg) translate(8px, -6px);
 }
 
-#isTodoCompleted:checked + #isTodoCompletedLabel {
+.isTodoCompleted:checked + .isTodoCompletedLabel {
   background-color: #a874ff;
   border-color: #a874ff;
 }

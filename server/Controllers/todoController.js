@@ -2,6 +2,8 @@ import Todo from "../Models/Todo.js";
 
 const createTodo = async (req, res) => {
   try {
+    req.body.title = req.body.title.trim();
+
     if (!req.body.title) {
       return res.status(400).json({ message: "Title is required" });
     }
