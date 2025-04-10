@@ -8,6 +8,10 @@
 --border-color: #2D2D2D;
 --completed-text: #616161; */
 
+body {
+  box-sizing: border-box;
+}
+
 .text-custom-color {
   color: rgb(31, 103, 161);
 }
@@ -106,4 +110,61 @@ input:focus {
 .list-todos li {
   list-style: none;
   /* width: 50%; */
+}
+
+.todo-task {
+  align-items: center;
+  border-radius: 8px;
+}
+
+.todo-task input {
+  border-radius: 5px;
+}
+
+#isTodoCompletedLabel {
+  border: 1px solid white;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  transition: 0.3s;
+  overflow: hidden;
+}
+
+.line {
+  display: inline-block;
+  background-color: #ffffff;
+  transition: 0.3s;
+}
+
+.line1 {
+  width: 3px;
+  height: 6px;
+  transform: rotate(-45deg) translate(8px, -15px);
+}
+
+#isTodoCompleted:checked + #isTodoCompletedLabel .line1 {
+  width: 2px;
+  height: 6px;
+  transform: rotate(-45deg) translate(6px, -3px);
+}
+
+/* .line2 {
+  width: 10px;0
+  height: 2px;
+  transform: rotate(-45deg) translate(1px, 1px); */
+/* } */
+.line2 {
+  width: 10px;
+  height: 2px;
+  transform: rotate(-45deg) translate(20px, -7px);
+}
+#isTodoCompleted:checked + #isTodoCompletedLabel .line2 {
+  width: 10px;
+  height: 2px;
+  transform: rotate(-45deg) translate(8px, -6px);
+}
+
+#isTodoCompleted:checked + #isTodoCompletedLabel {
+  background-color: #a874ff;
+  border-color: #a874ff;
 }
