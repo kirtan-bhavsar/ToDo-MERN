@@ -15,32 +15,32 @@
 
     const [todos,setTodos] = useState([]);
 
-    useEffect(()=> {
+    const fetchData = async() => {
 
-      const fetchData = async() => {
-
-        try {
-          const apiData = await axios.get('http://localhost:5500/api/v1/todos');
-          setTodos(apiData.data)
-          console.log(apiData.data[0].title);
-          console.log("fetchData api called successfully");
-        } catch (error) {
-          console.log(error);
-        }
-
+      try {
+        const apiData = await axios.get('http://localhost:5500/api/v1/todos');
+        setTodos(apiData.data);
+        console.log("fetchData api called successfully");
+      } catch (error) {
+        console.log(error);
       }
 
+    }
+
+    useEffect(()=> {
+      
       fetchData();
 
-    },[data]);
+    },[]);
 
     const deleteTask = async(id) => {
 
       console.log("delete task called");
 
       try {
-        await axios.delete(`http://localhost:5500/api/v1/delete/${id}`);
+        await axios.delete(`/api/v1/delete/${id}`);
         console.log(`Task deleted with the id ${id}`);
+        fetchData();
       } catch (error) {
         console.log(error);
       }
@@ -55,12 +55,12 @@
 
       try {
         
-        await axios.put(`http://localhost:5500/api/v1/edit/${id}`,body);
+        await axios.put(`/api/v1/edit/${id}`,body);
         // await axios.put(`/edit/${id}`,body);
 
         console.log(`task updated successfully with the id ${id}`);
 
-
+        fetchData();
 
       } catch (error) {
         
@@ -76,8 +76,9 @@
       e.preventDefault();
 
       try {
-        await axios.post("http://localhost:5500/api/v1/add", data);
+        await axios.post("api/v1/add", data);
         console.log("API Call successful");
+        fetchData();
       } catch (error) {
         console.log(error);
       }
