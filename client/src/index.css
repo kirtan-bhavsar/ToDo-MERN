@@ -130,6 +130,14 @@ input:focus {
   /* background-color: #1b151e; */
 }
 
+.checkSpan {
+  margin-left: 10px;
+}
+
+.titleDisplaySpan {
+  padding-bottom: 5px;
+}
+
 .isTodoCompletedLabel {
   border: 1px solid white;
   width: 15px;

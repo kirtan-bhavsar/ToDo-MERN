@@ -1,4 +1,4 @@
-  import React, { useEffect, useState } from "react";
+  import React, { useEffect, useState,useRef } from "react";
   import axios from "axios";
   import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
   // import { faPenToSquare as faPenToSquareRegular} from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,8 @@
     });
 
     const [todos,setTodos] = useState([]);
+
+    const addInputRef = useRef(null); 
 
     const fetchData = async() => {
 
@@ -78,6 +80,8 @@
       try {
         await axios.post("api/v1/add", data);
         console.log("API Call successful");
+        data.title = "";
+        addInputRef.current.focus();
         fetchData();
       } catch (error) {
         console.log(error);
@@ -88,19 +92,35 @@
       <>
         <div className="container-fluid position-relative bg-dark align-items-center d-flex flex-column">
           <h1 className="text-custom-heading-color my-2 fw-bold">My Todos</h1>
-          <div className="add-todo d-flex my-5">
+          {/* <div onClick={addTask} className="add-todo d-flex my-5">
             <input
               type="text"
               htmlFor="title"
               name="title"
               placeholder="Add a new task..."
+              value={data.title}
               onChange={(e) => setData({ ...data, title: e.target.value })}
               className="bg-custom-secondary-color addtask-input rounded-3 p-2 text-custom-secondary-color"
             />
             <button className="" type="button" onClick={addTask}>
               Add
             </button>
-          </div>
+          </div> */}
+          <form className="add-todo d-flex my-5" onSubmit={addTask}>
+          <input
+            ref={addInputRef}
+              type="text"
+              name="title"
+              placeholder="Add a new task..."
+              value={data.title}
+              onChange={(e) => setData({ ...data, title: e.target.value })}
+              className="bg-custom-secondary-color addtask-input rounded-3 p-2 text-custom-secondary-color"
+              autoFocus
+            />
+            <button className="" type="submit" >
+              Add
+            </button>
+          </form>
           <div className="list-todos">
             {/* <li className="text-custom-primary-color">
             <div className="todo-task">
@@ -115,17 +135,17 @@
               <li className="text-custom-primary-color my-3" key={todo._id}>
               <div className="todo-task d-flex bg-custom-secondary-color py-3 h-25">
                 {/* <span style={ {width:"5%"} } className="mx-2"><input type="checkbox" /></span> */}
-                <span style={{ width: "5%" }} className="mx-2 ">
-                  <input onClick={() => editTask(todo._id,todo.isDone)} type="checkbox" checked={todo.isDone} id={`isTodoCompleted-${todo._id}`} class="isTodoCompleted" hidden/>
+                <span style={{ width: "5%" }} className="checkSpan">
+                  <input onClick={() => editTask(todo._id,todo.isDone)} type="checkbox" checked={todo.isDone} id={`isTodoCompleted-${todo._id}`} className="isTodoCompleted" hidden/>
                   <label
                     htmlFor={`isTodoCompleted-${todo._id}`}
-                    class="isTodoCompletedLabel"
+                    className="isTodoCompletedLabel"
                   >
                     <span className="line line1"></span>
                     <span className="line line2"></span>
                   </label>
                 </span>
-                <span style={{ width: "85%" }} className="">{todo.title}</span>
+                <span style={{ width: "85%" }} className="titleDisplaySpan">{todo.title}</span>
                 {/* <span className="" style={{ width: "5%" }}> */}
                 <span  style={{ width: "5%" }}><FontAwesomeIcon className="editTask" icon={faPenToSquare}></FontAwesomeIcon></span>
                 {/* </span> */}
