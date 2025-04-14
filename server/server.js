@@ -3,6 +3,7 @@ import dotenv from "dotenv/config";
 import connectDB from "./db.js";
 import todoRouter from "./Routes/todoRoutes.js";
 import cors from "cors";
+import userRouter from "./Routes/userRoutes.js";
 
 const app = express();
 const port = process.env.PORT;
@@ -15,6 +16,7 @@ connectDB();
 
 // Mount Routers
 app.use("/api/v1", todoRouter);
+app.use("/api/v1/user", userRouter);
 
 // Remove this when going into production
 app.get("/api/v1/test", (req, res) => {
