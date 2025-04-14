@@ -31,6 +31,9 @@ const App = () => {
       const apiData = await axios.get("/api/v1/todos");
       setTodos(apiData.data);
       console.log("fetchData api called successfully");
+      if (isEditing) {
+        setEditing(null);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +47,7 @@ const App = () => {
     try {
       await axios.put(`/api/v1/edit/${id}`, body);
       fetchData();
-      setEditing(null);
+      // setEditing(null);
       setEditData({
         title: "",
       });
@@ -145,18 +148,24 @@ const App = () => {
                     </label>
                   </span>
                   {isEditing === todo._id ? (
-                    <input
-                      // ref={editInputRef}
-                      autoFocus
-                      style={{ width: "85%" }}
-                      className="titleDisplayInput"
-                      type="text"
-                      value={editData.title}
-                      onChange={(e) => {
-                        console.log("edit data input field called");
-                        setEditData({ ...editData, title: e.target.value });
-                      }}
-                    ></input>
+                      <input
+                        // ref={editInputRef}
+                        style={{ width: "85%" }}
+                        className="titleDisplayInput"
+                        autoFocus
+                        type="text"
+                        value={editData.title}
+                        onChange={(e) => {
+                          console.log("edit data input field called");
+                          setEditData({ ...editData, title: e.target.value });
+                        }}
+                        onKeyDown={(e) => {
+                          //e.preventDefault();
+                          if(e.key == 'Enter'){
+                            editTodoTitle(todo._id);
+                          }
+                        }}
+                      ></input>
                   ) : (
                     <span style={{ width: "85%" }} className="titleDisplaySpan">
                       {todo.title}
