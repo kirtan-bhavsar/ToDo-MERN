@@ -35,6 +35,19 @@ const getAllTodos = async (req, res) => {
 const getTodoById = async (req, res) => {
   const id = req.params.id;
 
+  const userId = req.user.id;
+
+  if (!userId) {
+    return res
+      .status(400)
+      .json({ message: "User not authorized to perform this action" });
+  }
+
+  // console.log(req.headers["x-auth-token"]);
+  // console.log(
+  //   req.headers.authorization.split(" ")[1] + "printed from controller"
+  // );
+
   if (!id) {
     return res
       .status(400)
