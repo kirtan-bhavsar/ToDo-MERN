@@ -6,6 +6,7 @@ import {
   getAllTodos,
   getTodoById,
 } from "../Controllers/todoController.js";
+import auth from "../middleware/auth.js";
 
 const todoRouter = express.Router();
 
@@ -15,7 +16,7 @@ todoRouter.put("/edit/:id", editTodo);
 
 todoRouter.get("/todos", getAllTodos);
 
-todoRouter.get("/todos/:id", getTodoById);
+todoRouter.get("/todos/:id", auth, getTodoById);
 
 todoRouter.delete("/delete/:id", deleteTodo);
 
