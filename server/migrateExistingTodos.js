@@ -21,7 +21,18 @@ const migrateExistingTodos = async () => {
   const testTodo = await Todo.findOne({ _id: "67f2d234373edd4f906e8916" });
 
   // console.log(JSON.parse(testTodo));
-  console.log(testTodo._id);
+  console.log(testTodo.id);
+
+  testTodo.user = user[0].id;
+  await testTodo.save();
+
+  console.log("todo migrated successfully");
+
+  for (const todo of todos) {
+    todo.user = user[0].id;
+    await todo.save();
+    console.log("todo updated successfully");
+  }
 };
 
 migrateExistingTodos();
