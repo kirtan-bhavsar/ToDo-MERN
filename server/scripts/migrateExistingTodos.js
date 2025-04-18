@@ -1,5 +1,5 @@
-import User from "./Models/User.js";
-import Todo from "./Models/Todo.js";
+import User from "../Models/User.js";
+import Todo from "../Models/Todo.js";
 import config from "dotenv/config";
 import mongoose from "mongoose";
 

@@ -4,13 +4,21 @@ import connectDB from "./db.js";
 import todoRouter from "./Routes/todoRoutes.js";
 import cors from "cors";
 import userRouter from "./Routes/userRoutes.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const port = process.env.PORT;
 
 app.use(express.json());
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3500",
+    credentials: true,
+  })
+);
+
+app.use(cookieParser());
 
 connectDB();
 
