@@ -14,7 +14,7 @@ todoRouter.post("/add", createTodo);
 
 todoRouter.put("/edit/:id", editTodo);
 
-todoRouter.get("/todos", getAllTodos);
+todoRouter.get("/todos", auth, getAllTodos);
 
 todoRouter.get("/todos/:id", auth, getTodoById);
 

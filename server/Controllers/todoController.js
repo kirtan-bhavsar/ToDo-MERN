@@ -19,10 +19,12 @@ const createTodo = async (req, res) => {
 };
 
 const getAllTodos = async (req, res) => {
-  try {
-    const todos = await Todo.find();
+  const userId = req.user.id;
 
-    if (!todos) {
+  try {
+    const todos = await Todo.find({ user: userId });
+
+    if (todos.length == 0) {
       return res.status(400).json({ message: "No todos found" });
     }
 
