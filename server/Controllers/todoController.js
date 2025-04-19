@@ -1,12 +1,32 @@
 import Todo from "../Models/Todo.js";
+import User from "../Models/User.js";
 
+// @desc Api to create a todo
+// @api : /api/v1/add
+// @access Private
 const createTodo = async (req, res) => {
+  const userId = req.user.id;
+
+  if (!userId) {
+    return res
+      .status(400)
+      .json({ message: "User not authorized to perform this action" });
+  }
+
+  const userExists = await User.findOne({ _id: userId });
+
+  if (!userExists) {
+    return res.status(400).json({ message: "No user found" });
+  }
+
   try {
     req.body.title = req.body.title.trim();
 
     if (!req.body.title) {
       return res.status(400).json({ message: "Title is required" });
     }
+
+    req.body.user = userId;
 
     const todo = await Todo.create(req.body);
 
@@ -18,11 +38,26 @@ const createTodo = async (req, res) => {
   }
 };
 
+// @desc api to get all todos for a user
+// @api /api/v1/todos
+// @access private
 const getAllTodos = async (req, res) => {
   const userId = req.user.id;
 
+  if (!userId) {
+    return res
+      .status(400)
+      .json({ message: "User not authorized to perform this action" });
+  }
+
+  const userExists = await User.findOne({ _id: userId });
+
+  if (!userExists) {
+    return res.status(400).json({ message: "No user found" });
+  }
+
   try {
-    const todos = await Todo.find({ user: userId });
+    const todos = await Todo.find({ user: userExists._id });
 
     if (todos.length == 0) {
       return res.status(400).json({ message: "No todos found" });
@@ -34,9 +69,10 @@ const getAllTodos = async (req, res) => {
   }
 };
 
+// @desc api to get a specific todo by it's id
+// @api /api/v1/todos/:id
+// @access private
 const getTodoById = async (req, res) => {
-  const id = req.params.id;
-
   const userId = req.user.id;
 
   if (!userId) {
@@ -45,54 +81,106 @@ const getTodoById = async (req, res) => {
       .json({ message: "User not authorized to perform this action" });
   }
 
-  // console.log(req.headers["x-auth-token"]);
-  // console.log(
-  //   req.headers.authorization.split(" ")[1] + "printed from controller"
-  // );
+  const userExists = await User.findOne({ _id: userId });
 
-  if (!id) {
+  if (!userExists) {
+    return res.status(400).json({ message: "No user found" });
+  }
+
+  const todoId = req.params.id;
+
+  if (!todoId) {
     return res
       .status(400)
       .json({ message: "Id is compulsary to fetch the data" });
   }
 
-  const todo = await Todo.findById(id);
+  const todo = await Todo.findById(todoId);
 
   if (!todo) {
     return res.status(400).json({ message: "No todo found for this id." });
   }
 
-  return res.status(200).json(todo);
+  try {
+    const todoUser = todo.user;
+
+    console.log(todoUser + " todoUser");
+    console.log(userExists.id + " userExists.id");
+
+    if (userExists.id === todoUser.toString()) {
+      console.log("Condition Matching");
+      return res.status(200).json(todo);
+    } else {
+      return res.status(400).json({
+        message:
+          "User not authorized to peform this action as users does not match",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+
+  // return res.status(200).json(todo);
 };
 
+// @desc an api to edit a todo
+// @api /api/v1/edit/:id
+// @access private
 const editTodo = async (req, res) => {
-  try {
-    const id = req.params.id;
+  const userId = req.user.id;
 
-    if (!id) {
+  if (!userId) {
+    return res
+      .status(400)
+      .json({ message: "User not authorized to perform this action" });
+  }
+
+  const userExists = await User.findOne({ _id: userId });
+
+  if (!userExists) {
+    return res.status(400).json({ message: "User not found" });
+  }
+
+  try {
+    const todoId = req.params.id;
+
+    if (!todoId) {
       return res
         .status(400)
         .json({ message: "Id required to perform edit action" });
     }
 
-    const todo = await Todo.findById(id);
+    const todo = await Todo.findById(todoId);
 
     if (!todo) {
       return res.status(404).json({ message: "No todo found with this id" });
     }
 
-    const updatedTodo = await Todo.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
+    const todoUser = todo.user;
 
-    res
-      .status(200)
-      .json({ message: "Todo Updated Successfully", data: updatedTodo });
+    if (userExists.id === todoUser.toString()) {
+      const updatedTodo = await Todo.findByIdAndUpdate(todoId, req.body, {
+        new: true,
+      });
+
+      res
+        .status(200)
+        .json({ message: "Todo Updated Successfully", data: updatedTodo });
+    } else {
+      return res.status(400).json({
+        message:
+          "User not authorized to perform this action as users does not match",
+      });
+    }
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
+// @desc appi to delete a todo
+// @api /api/v1/delete/:id
+// @access private
 const deleteTodo = async (req, res) => {
   const id = req.params.id;
 

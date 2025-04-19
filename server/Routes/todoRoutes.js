@@ -10,14 +10,14 @@ import auth from "../middleware/auth.js";
 
 const todoRouter = express.Router();
 
-todoRouter.post("/add", createTodo);
+todoRouter.post("/add", auth, createTodo);
 
-todoRouter.put("/edit/:id", editTodo);
+todoRouter.put("/edit/:id", auth, editTodo);
 
 todoRouter.get("/todos", auth, getAllTodos);
 
 todoRouter.get("/todos/:id", auth, getTodoById);
 
-todoRouter.delete("/delete/:id", deleteTodo);
+todoRouter.delete("/delete/:id", auth, deleteTodo);
 
 export default todoRouter;
