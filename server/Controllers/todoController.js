@@ -130,6 +130,8 @@ const getTodoById = async (req, res) => {
 const editTodo = async (req, res) => {
   const userId = req.user.id;
 
+  console.log(userId + " userId");
+
   if (!userId) {
     return res
       .status(400)
@@ -138,12 +140,16 @@ const editTodo = async (req, res) => {
 
   const userExists = await User.findOne({ _id: userId });
 
+  console.log(userExists + " userExists");
+
   if (!userExists) {
     return res.status(400).json({ message: "User not found" });
   }
 
   try {
     const todoId = req.params.id;
+
+    console.log(todoId + " todo Id");
 
     if (!todoId) {
       return res
@@ -152,6 +158,8 @@ const editTodo = async (req, res) => {
     }
 
     const todo = await Todo.findById(todoId);
+
+    console.log(todo + " todo");
 
     if (!todo) {
       return res.status(404).json({ message: "No todo found with this id" });
@@ -182,23 +190,46 @@ const editTodo = async (req, res) => {
 // @api /api/v1/delete/:id
 // @access private
 const deleteTodo = async (req, res) => {
-  const id = req.params.id;
+  const userId = req.user.id;
 
-  if (!id) {
+  if (!userId) {
+    return res
+      .status(400)
+      .json({ message: "User not authorized to perform this action" });
+  }
+
+  const userExists = await User.findOne({ _id: userId });
+
+  if (!userExists) {
+    return res.status(200).json({ message: "User not found" });
+  }
+
+  const todoId = req.params.id;
+
+  if (!todoId) {
     return res
       .status(400)
       .json({ message: "Id required to perform delete action" });
   }
 
-  const todo = await Todo.findById(id);
+  const todo = await Todo.findById(todoId);
 
   if (!todo) {
     return res.status(400).json({ messge: "No todo found with this id" });
   }
 
-  await Todo.findByIdAndDelete(id);
+  const todoUser = todo.user;
 
-  res.status(200).json({ message: "Todo deleted successfully" });
+  if (userExists.id === todoUser.toString()) {
+    await Todo.findByIdAndDelete(todoId);
+
+    res.status(200).json({ message: "Todo deleted successfully" });
+  } else {
+    return res.status(400).json({
+      message:
+        "User not authorized to perform this action as users does not match",
+    });
+  }
 };
 
 export { createTodo, editTodo, getAllTodos, getTodoById, deleteTodo };
