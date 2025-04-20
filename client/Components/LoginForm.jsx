@@ -12,11 +12,11 @@ const LoginForm = () => {
         <form>
         <div className="InputGroup">
         <label htmlFor="" className='d-inline-block'>Email</label>
-        <input type="text" className='d-inline-block' placeholder='you@example.com'/>
+        <input required type="text" className='d-inline-block' placeholder='you@example.com'/>
         </div>
         <div className="InputGroup">
         <label htmlFor="" className='d-inline-block'>Password</label>
-        <input type="password" placeholder='••••••••'/>
+        <input required type="password" placeholder='••••••••'/>
         </div>
         <button type='submit'>Login</button>
     </form>

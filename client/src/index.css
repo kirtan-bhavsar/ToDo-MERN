@@ -261,7 +261,6 @@ input:focus {
   border-radius: 8px;
   padding: 10px 16px;
   transition: 0.3s;
-  /* color: #e0e0e0; */
 }
 
 .LoginForm button:hover {
@@ -307,5 +306,76 @@ input:focus {
 }
 
 .SignupLink:hover {
+  color: #9e65f5;
+}
+
+/* Designing Signup form */
+
+.SignupContainer {
+  background-color: #121212;
+}
+
+.SignupForm {
+  height: 580px;
+  width: 500px;
+  background-color: #1e1e1e;
+  margin-top: 55px;
+  border-radius: 12px;
+  padding: 2.5rem;
+}
+
+.SignupFormHeading {
+  color: #bb86fc;
+  text-align: center;
+}
+
+.SignupFormParagraph {
+  color: #a0a0a0;
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 16px;
+}
+
+.SignupForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.SignupForm label {
+  color: #e0e0e0;
+}
+
+.SignupForm form input {
+  background-color: #121212;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #e0e0e0;
+  border: 1px solid #2d2d2d;
+}
+
+.SignupForm form button {
+  margin-top: 10px;
+  background-color: #bb86fc;
+  border-radius: 8px;
+  padding: 10px 16px;
+  transition: 0.3s;
+}
+
+.SignupForm form button:hover {
+  color: #9e65f5;
+}
+
+.SignupForm .footer {
+  margin-top: 15px;
+}
+
+.SignupForm .footer span .LoginLink {
+  text-decoration: none;
+  color: #bb86fc;
+  transition: 0.3s;
+}
+
+.SignupForm .footer span .LoginLink:hover {
   color: #9e65f5;
 }
