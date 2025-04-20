@@ -271,3 +271,41 @@ input:focus {
 .InputGroup label {
   color: #e0e0e0;
 }
+
+.divider {
+  color: #a0a0a0;
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  font-size: 0.8rem;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  border-bottom: 1px solid #a0a0a0;
+  flex: 1;
+}
+
+.divider::before {
+  margin-right: 10px;
+}
+
+.divider::after {
+  margin-left: 10px;
+}
+
+.footer {
+  text-align: center;
+  color: #a0a0a0;
+}
+
+.SignupLink {
+  text-decoration: none;
+  color: #bb86fc;
+  /* background-color: red; */
+}
+
+.SignupLink:hover {
+  color: #9e65f5;
+}
