@@ -6,7 +6,8 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import Home from "../Pages/Home";
+import Home from "../Pages/Home.jsx";
+import Login from "../Pages/Login.jsx";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 
@@ -17,7 +18,8 @@ const App = () => {
     <>
     <Router>
     <Routes>
-      <Route path="/" element={<Home/>}></Route>
+      <Route path="/" element={<Login/>}></Route>
+      <Route path="/home" element={<Home/>}></Route>
       </Routes>
       </Router>
     </>

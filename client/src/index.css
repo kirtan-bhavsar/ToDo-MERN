@@ -193,3 +193,81 @@ input:focus {
   background-color: #a874ff;
   border-color: #a874ff;
 }
+
+/* Login and Signup Designing */
+
+.LoginContainer {
+  background-color: #121212;
+}
+
+.LoginForm {
+  background-color: #1e1e1e;
+  height: 500px;
+  width: 500px;
+  /* text-align: center; */
+  margin-top: 55px;
+  border-radius: 12px;
+  padding: 2.5rem;
+}
+
+.LoginForm form {
+  width: 100%;
+}
+
+.LoginFormHeading {
+  color: #bb86fc;
+  text-align: center;
+}
+
+.LoginFormParagraph {
+  color: #a0a0a0;
+  font-size: 17px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.InputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.InputGroup label {
+  font-size: 14px;
+}
+
+.LoginForm form {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.LoginForm input {
+  background-color: #121212;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #e0e0e0;
+  border: 1px solid #2d2d2d;
+}
+
+.LoginForm input:focus {
+  border-color: #bb86fc;
+}
+
+.LoginForm button {
+  margin-top: 10px;
+  background-color: #bb86fc;
+  border-radius: 8px;
+  padding: 10px 16px;
+  transition: 0.3s;
+  /* color: #e0e0e0; */
+}
+
+.LoginForm button:hover {
+  background-color: #9e65f5;
+}
+
+.InputGroup label {
+  color: #e0e0e0;
+}
