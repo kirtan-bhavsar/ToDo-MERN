@@ -94,4 +94,14 @@ const loginUser = async (req, res) => {
   generateToken(res, userExists);
 };
 
-export { registerUser, loginUser };
+const logoutUser = async (req, res) => {
+  res
+    .status(200)
+    .cookie("jwtToken", "none", {
+      httpOnly: true,
+      expires: new Date(Date.now() + 1 * 1000),
+    })
+    .json({ message: "Logout Successful" });
+};
+
+export { registerUser, loginUser, logoutUser };
