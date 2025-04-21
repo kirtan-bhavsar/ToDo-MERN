@@ -42,7 +42,7 @@ const Home = () => {
     e.preventDefault();
 
     try {
-      await axios.post("api/v1/add", data);
+      await axios.post("/api/v1/add", data);
       console.log("API Call successful");
       data.title = "";
       addInputRef.current.focus();
@@ -106,7 +106,7 @@ const Home = () => {
 
   return (
     <>
-    <div className="container-fluid position-relative bg-dark align-items-center d-flex flex-column">
+    <div className="container-fluid position-relative bg-custom-primary-color align-items-center d-flex flex-column">
         <TodoHeading/>
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} />
         <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />

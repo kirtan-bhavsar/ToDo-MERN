@@ -67,7 +67,12 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
+  console.log("Login User api called successfully");
+
   const { email, password } = req.body;
+
+  console.log(email + " email");
+  console.log(password + " password");
 
   if (!email) {
     return res.status(400).json({ message: "Email id cannot be blank" });
