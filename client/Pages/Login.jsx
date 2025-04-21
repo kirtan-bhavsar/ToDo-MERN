@@ -1,25 +1,9 @@
-import react from "react";
+import react, { useEffect } from "react";
 import LoginForm from "../Components/LoginForm.jsx";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
-    const navigate = useNavigate();
-
-  const loginUser = async (email, password) => {
-    const body = {
-      email,
-      password,
-    };
-
-    try {
-      await axios.post("/api/v1/login", body);
-      console.log("user logged in successfully from front-end");
-      navigate('/home');
-    } catch (error) {
-        console.log(error);
-    }
-  };
 
   return (
     <>

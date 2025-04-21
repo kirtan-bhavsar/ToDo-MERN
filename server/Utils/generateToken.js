@@ -17,7 +17,7 @@ const generateToken = async (res, user) => {
   jwt.sign(
     payload,
     process.env.JWT_SECRET,
-    { expiresIn: "5d" },
+    { expiresIn: "7d" },
     (err, token) => {
       if (err) console.log(err);
 

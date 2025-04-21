@@ -23,12 +23,6 @@ const LoginForm = () => {
 
       e.preventDefault();
 
-
-      // const body = {
-      //   email,
-      //   password,
-      // };
-  
       try {
         await axios.post("/api/v1/user/login", data);
         console.log("user logged in successfully from front-end");
