@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import {ToastContainer,toast,Slide} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Make sure you have this import
+// import 'react-toastify/dist/ReactToastify.css'; // Make sure you have this import
 
 const LoginForm = () => {
 
-  const popError = () => toast.error('🦄 Wow so easy!', {
+  const popError = (message,type) => toast.error(message, {
     position: "top-right",
     autoClose: 1500,
     hideProgressBar: false,
@@ -42,7 +42,7 @@ const LoginForm = () => {
       } catch (error) {
           // console.log(error.response.data.message);
           if(error){
-            popError();
+            popError(error.response.data.message);
             // return (<ToastContainer></ToastContainer>)
           }
       }
