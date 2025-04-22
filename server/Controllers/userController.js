@@ -67,12 +67,7 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  console.log("Login User api called successfully");
-
   const { email, password } = req.body;
-
-  console.log(email + " email");
-  console.log(password + " password");
 
   if (!email) {
     return res.status(400).json({ message: "Email id cannot be blank" });
@@ -85,9 +80,7 @@ const loginUser = async (req, res) => {
   const userExists = await User.findOne({ email });
 
   if (!userExists) {
-    return res
-      .status(400)
-      .json({ message: "No user found with these credentials" });
+    return res.status(400).json({ message: "No user found for this email" });
   }
 
   const passwordMatches = await bcrypt.compare(password, userExists.password);

@@ -204,7 +204,6 @@ input:focus {
   background-color: #1e1e1e;
   height: 500px;
   width: 500px;
-  /* text-align: center; */
   margin-top: 55px;
   border-radius: 12px;
   padding: 2.5rem;
@@ -237,23 +236,100 @@ input:focus {
 }
 
 .LoginForm form {
-  /* background-color: red; */
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.LoginForm input {
-  background-color: #121212;
+.LoginForm .InputGroup input {
+  background-color: #121212 !important;
   padding: 10px 16px;
   border-radius: 8px;
-  color: #e0e0e0;
+  color: #e0e0e0 !important;
   border: 1px solid #2d2d2d;
 }
 
-.LoginForm input:focus {
-  border-color: #bb86fc;
+.LoginForm .InputGroup input:focus {
+  background-color: #121212 !important;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #e0e0e0;
+  border: 1px solid #bb86fc !important;
 }
+
+.LoginForm .InputGroup input:active {
+  background-color: #121212 !important;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #e0e0e0;
+  border: 1px solid #bb86fc !important;
+}
+
+/* My change for autofill */
+/* .LoginForm .InputGroup .EmailInput input:-webkit-autofill,
+.LoginForm .InputGroup .EmailInput input:-webkit-autofill:focus,
+.LoginForm .InputGroup .EmailInput input:-webkit-autofill:active,
+.LoginForm .InputGroup .EmailInput input:-internal-autofill-selected,
+.LoginForm .InputGroup .EmailInput input:-internal-autofill-selected:focus,
+.LoginForm .InputGroup .EmailInput input:-internal-autofill-selected:active {
+  background-color: red !important;
+} */
+
+/* google recommendation for autofill */
+/* .LoginForm .InputGroup input:-webkit-autofill,
+.LoginForm .InputGroup input:-webkit-autofill:hover,
+.LoginForm .InputGroup input:-webkit-autofill:focus,
+.LoginForm .InputGroup input:-internal-autofill-selected,
+.LoginForm .InputGroup input:-internal-autofill-selected:focus,
+.LoginForm .InputGroup input:-internal-autofill-selected:active {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background-color: #121212;
+  color: #e0e0e0;
+  background-image: none !important;
+  border: 1px solid #2d2d2d !important;
+  box-shadow: none !important;
+} */
+
+/* Deepseek recommendation for autofill  -  Don't know but it magically works*/
+.LoginForm .InputGroup input:-webkit-autofill,
+.LoginForm .InputGroup input:-webkit-autofill:hover,
+.LoginForm .InputGroup input:-webkit-autofill:focus,
+.LoginForm .InputGroup input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #121212 inset !important;
+  -webkit-text-fill-color: #e0e0e0 !important;
+  caret-color: #e0e0e0;
+  border: 1px solid #bb86fc !important;
+}
+
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-internal-autofill-selected {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  background-image: none !important;
+  background-color: #121212 !important;
+  color: #a0a0a0 !important;
+} */
+
+/* Recommendation by microsoft copilot
+/* Autofill Background Override */
+/* .LoginForm .InputGroup input:-webkit-autofill {
+  background-color: #121212 !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #2d2d2d !important;
+  -webkit-box-shadow: 0 0 0px 1000px #121212 inset !important;
+  transition: background-color 5000s ease-in-out 0s; 
+}
+
+.LoginForm .InputGroup input:-webkit-autofill:hover,
+.LoginForm .InputGroup input:-webkit-autofill:focus {
+  background-color: #121212 !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #bb86fc !important;
+  -webkit-box-shadow: 0 0 0px 1000px #121212 inset !important;
+} */
 
 .LoginForm button {
   margin-top: 10px;

@@ -3,8 +3,22 @@ import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import {ToastContainer,toast,Slide} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Make sure you have this import
 
 const LoginForm = () => {
+
+  const popError = () => toast.error('🦄 Wow so easy!', {
+    position: "top-right",
+    autoClose: 1500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+    transition: Slide,
+    });
 
   const [data,setData] = useState({
     email:"",
@@ -19,16 +33,18 @@ const LoginForm = () => {
   
     const loginUser = async (e,data) => {
 
-      console.log('loginUser called in the LoginForm.jsx');
-
       e.preventDefault();
 
       try {
         await axios.post("/api/v1/user/login", data);
-        console.log("user logged in successfully from front-end");
+
         navigate('/home');
       } catch (error) {
-          console.log(error);
+          // console.log(error.response.data.message);
+          if(error){
+            popError();
+            // return (<ToastContainer></ToastContainer>)
+          }
       }
     }
 
@@ -41,7 +57,7 @@ const LoginForm = () => {
         <form onSubmit={(e) => loginUser(e,data)}>
         <div className="InputGroup">
         <label htmlFor="" className='d-inline-block'>Email</label>
-        <input required type="text" name='email' onChange={(e) => onChange(e)} className='d-inline-block' placeholder='you@example.com'/>
+        <input required type="text" name='email' onChange={(e) => onChange(e)} className='d-inline-block EmailInput' placeholder='you@example.com'/>
         </div>
         <div className="InputGroup">
         <label htmlFor="" className='d-inline-block'>Password</label>
@@ -52,6 +68,7 @@ const LoginForm = () => {
     <div className="divider">or</div>
     <div className="footer">Don't have an account? <span><Link className="SignupLink" to='/signup'>Sign up</Link></span></div>
     </div>
+    <ToastContainer></ToastContainer>
     </>
   )
 }
