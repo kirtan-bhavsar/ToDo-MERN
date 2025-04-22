@@ -28,7 +28,7 @@ const auth = async (req, res, next) => {
   if (
     !token &&
     req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
+    req.headers.authorization.startsWith("Bearer ")
   ) {
     token = req.headers.authorization.split(" ")[1];
   }
@@ -49,6 +49,7 @@ const auth = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
+    return res.status(500).json({ message: error });
   }
 };
 

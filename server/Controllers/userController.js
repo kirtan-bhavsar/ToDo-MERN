@@ -80,9 +80,7 @@ const loginUser = async (req, res) => {
   const userExists = await User.findOne({ email });
 
   if (!userExists) {
-    return res
-      .status(400)
-      .json({ message: "No user found with these credentials" });
+    return res.status(400).json({ message: "No user found for this email" });
   }
 
   const passwordMatches = await bcrypt.compare(password, userExists.password);
@@ -104,4 +102,27 @@ const logoutUser = async (req, res) => {
     .json({ message: "Logout Successful" });
 };
 
-export { registerUser, loginUser, logoutUser };
+const authorizeUser = async (req, res) => {
+  const userId = req.user.id;
+
+  if (!userId) {
+    return res.status(400).json({ message: "Token not found" });
+  }
+
+  const user = await User.findOne({ _id: userId });
+
+  if (!user) {
+    return res.status(400).json({ message: "No user found for this id" });
+  }
+
+  try {
+    res.status(200).json({ data: user, message: "User logged in" });
+  } catch (error) {
+    console.log("error log starts");
+    console.log(error + " logged error");
+    console.log("error log ends");
+    return res.status(500).json({ message: error });
+  }
+};
+
+export { registerUser, loginUser, logoutUser, authorizeUser };
