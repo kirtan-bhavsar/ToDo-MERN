@@ -73,6 +73,12 @@ const loginUser = async (req, res) => {
     return res.status(400).json({ message: "Email id cannot be blank" });
   }
 
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ message: "Please provide a valid email id" });
+  }
+
   if (!password) {
     return res.status(400).json({ message: "Password cannot be blank" });
   }
@@ -86,7 +92,7 @@ const loginUser = async (req, res) => {
   const passwordMatches = await bcrypt.compare(password, userExists.password);
 
   if (!passwordMatches) {
-    return res.status(400).json({ message: "Password Incorrect" });
+    return res.status(400).json({ message: "Incorrect Password" });
   }
 
   generateToken(res, userExists);

@@ -44,6 +44,29 @@ body {
   color: #9e65f5;
 }
 
+/* Header Styling */
+
+.HeaderContainer {
+  display: flex;
+  /* flex-direction: column; */
+  /* background-color: red; */
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.HeaderHeading {
+  position: relative;
+  left: 40%;
+  margin-top: 20px;
+}
+
+.HeaderLogoutButton {
+  color: #a0a0a0;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
 input:focus {
   border: 2px solid #9e65f5;
   outline: none;

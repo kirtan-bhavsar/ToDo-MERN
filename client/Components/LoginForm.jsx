@@ -4,21 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import {ToastContainer,toast,Slide} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Make sure you have this import
+import { successNotification,errorNotification } from '../Utils/Notifications.js';
+// import 'react-toastify/dist/ReactToastify.css'; // Make sure you have this import
 
 const LoginForm = () => {
-
-  const popError = () => toast.error('🦄 Wow so easy!', {
-    position: "top-right",
-    autoClose: 1500,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "dark",
-    transition: Slide,
-    });
 
   const [data,setData] = useState({
     email:"",
@@ -37,13 +26,11 @@ const LoginForm = () => {
 
       try {
         await axios.post("/api/v1/user/login", data);
-
+        successNotification("Login Successful");
         navigate('/home');
       } catch (error) {
-          // console.log(error.response.data.message);
           if(error){
-            popError();
-            // return (<ToastContainer></ToastContainer>)
+            errorNotification(error.response.data.message);
           }
       }
     }
@@ -68,7 +55,7 @@ const LoginForm = () => {
     <div className="divider">or</div>
     <div className="footer">Don't have an account? <span><Link className="SignupLink" to='/signup'>Sign up</Link></span></div>
     </div>
-    <ToastContainer></ToastContainer>
+    {/* <ToastContainer></ToastContainer> */}
     </>
   )
 }
