@@ -28,3 +28,5 @@ const successNotification = (message) => {
     transition: Slide,
   });
 };
+
+export { errorNotification, successNotification };
