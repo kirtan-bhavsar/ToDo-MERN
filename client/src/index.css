@@ -64,6 +64,7 @@ body {
 .HeaderLogoutButton {
   color: #a0a0a0;
   cursor: pointer;
+  margin-right: 20px;
 }
 
 input:focus {
