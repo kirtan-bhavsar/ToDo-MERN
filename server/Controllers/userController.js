@@ -13,11 +13,17 @@ const registerUser = async (req, res) => {
 
   // Condition Checking
   if (!email) {
-    return res.status(400).json({ message: "Please provide a valid email Id" });
+    return res.status(400).json({ message: "Email Id is required" });
   }
 
   if (!password) {
     return res.status(400).json({ message: "Please enter a valid password" });
+  }
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ message: "Please provide a valid email Id" });
   }
 
   const userExists = await User.find({ email: email });

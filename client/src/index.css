@@ -478,3 +478,26 @@ input:-internal-autofill-selected {
 .SignupForm .footer span .LoginLink:hover {
   color: #9e65f5;
 }
+
+.SignupForm .InputGroup input:active,
+.SignupForm .InputGroup input:focus {
+  border: #9e65f5 1px solid;
+}
+
+.SignupForm .InputGroup input:-webkit-autofill,
+.SignupForm .InputGroup input:-webkit-autofill:hover,
+.SignupForm .InputGroup input:-webkit-autofill:focus,
+.SignupForm .InputGroup input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #121212 inset !important;
+  -webkit-text-fill-color: #e0e0e0 !important;
+  caret-color: #e0e0e0;
+  border: 1px solid #bb86fc !important;
+}
+
+.SignupForm .InputGroup .failureIndication:focus {
+  border: 1px solid #ff4500;
+}
+
+.SignupForm .InputGroup .successIndication:focus {
+  border: 1px solid #00ff7f;
+}
