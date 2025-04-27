@@ -42,6 +42,14 @@ const createTodo = async (req, res) => {
 // @api /api/v1/todos
 // @access private
 const getAllTodos = async (req, res) => {
+  // const reqParam = req.query.isDone;
+
+  // if (reqParam) {
+  //   console.log(reqParam);
+  // } else {
+  //   console.log("Request query not included");
+  // }
+
   const userId = req.user.id;
 
   if (!userId) {
@@ -57,7 +65,8 @@ const getAllTodos = async (req, res) => {
   }
 
   try {
-    const todos = await Todo.find({ user: userExists._id });
+    const todos = await Todo.find({ user: userExists._id, isDone: false });
+    // const todos = await Todo.find({ user: userExists._id });
 
     if (todos.length == 0) {
       return res.status(400).json({ message: "No todos found" });

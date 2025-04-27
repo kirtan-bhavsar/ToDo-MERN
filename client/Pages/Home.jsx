@@ -3,6 +3,7 @@ import axios from "axios";
 import TodoHeading from "../Components/TodoHeading.jsx";
 import AddTodo from "../Components/AddTodo.jsx";
 import ListTodos from "../Components/ListTodos.jsx";
+import { successNotification,errorNotification } from "../Utils/Notifications.js";
 
 const Home = () => {
 
@@ -27,7 +28,6 @@ const Home = () => {
     try {
       const apiData = await axios.get("/api/v1/todos");
       setTodos(apiData.data);
-      console.log("fetchData api called successfully");
       if (isEditing) {
         setEditing(null);
       }
@@ -37,13 +37,11 @@ const Home = () => {
   };
 
   const addTask = async (e) => {
-    console.log(data);
 
     e.preventDefault();
 
     try {
       await axios.post("/api/v1/add", data);
-      console.log("API Call successful");
       data.title = "";
       addInputRef.current.focus();
       fetchData();
@@ -53,11 +51,9 @@ const Home = () => {
   };
 
   const deleteTask = async (id) => {
-    console.log("delete task called");
 
     try {
       await axios.delete(`/api/v1/delete/${id}`);
-      console.log(`Task deleted with the id ${id}`);
       fetchData();
     } catch (error) {
       console.log(error);
@@ -72,13 +68,35 @@ const Home = () => {
     try {
       await axios.put(`/api/v1/edit/${id}`, body);
 
-      console.log(`task updated successfully with the id ${id}`);
 
       fetchData();
+
+      successNotification("Task completed successfully");
+
     } catch (error) {
       console.log(error);
     }
   };
+
+  // const editTask = async(id,isDone) => {
+
+  //   const updatedTodos = todos.map((todo)=> {
+  //     todo._id === id ? {...todo,isDone:!isDone} : todo
+  //   })
+
+  //   setTodos(updatedTodos);
+
+  //   const body = {isDone:!isDone}
+
+  //   try {
+  //     await axios.post(`/api/v1/edit/${id}`,body);
+  //     setTimeout(fetchData,1500)
+  //   } catch (error) {
+  //     console.log(error);
+  //     setTodos(todos);
+  //   }
+
+  // }
 
   
   const editTodoTitle = async (id) => {

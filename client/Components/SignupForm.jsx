@@ -38,10 +38,6 @@ const SignupForm = () => {
     } else {
         setPasswordMatches(false);
     }
-    // } else {
-    //   setPasswordMatches(false);
-    //   console.log(passwordMatches + " password does not matches");
-    // }
   };
 
   const onChange = (e) => {
