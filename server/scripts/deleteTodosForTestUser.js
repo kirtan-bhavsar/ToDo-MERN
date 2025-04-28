@@ -17,8 +17,8 @@ const deleteTodosForTestUser = async () => {
   console.log(todos);
 
   todos.map(async (todo) => {
-    // await Todo.findByIdAndDelete(todo._id);
-    console.log(todo.title);
+    await Todo.findByIdAndDelete(todo._id);
+    // console.log(todo.title);
   });
 
   console.log("All todos deleted successfully");

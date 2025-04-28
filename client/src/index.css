@@ -44,6 +44,11 @@ body {
   color: #9e65f5;
 }
 
+/* Container Styling */
+.Container {
+  min-height: 100vh;
+}
+
 /* Header Styling */
 
 .HeaderContainer {

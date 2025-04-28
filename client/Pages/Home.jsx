@@ -55,6 +55,7 @@ const Home = () => {
     try {
       await axios.delete(`/api/v1/delete/${id}`);
       fetchData();
+      successNotification("Task deleted Successfully");
     } catch (error) {
       console.log(error);
     }
@@ -111,6 +112,7 @@ const Home = () => {
       setEditData({
         title: "",
       });
+      successNotification("Task edited successfully");
       console.log("Edit Todo Title called after clicking check butotn");
     } catch (error) {
       console.log(error);
@@ -124,7 +126,7 @@ const Home = () => {
 
   return (
     <>
-    <div className="container-fluid position-relative bg-custom-primary-color align-items-center d-flex flex-column">
+    <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
         <TodoHeading/>
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} />
         <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
