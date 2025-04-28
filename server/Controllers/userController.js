@@ -13,11 +13,17 @@ const registerUser = async (req, res) => {
 
   // Condition Checking
   if (!email) {
-    return res.status(400).json({ message: "Please provide a valid email Id" });
+    return res.status(400).json({ message: "Email Id is required" });
   }
 
   if (!password) {
     return res.status(400).json({ message: "Please enter a valid password" });
+  }
+
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ message: "Please provide a valid email Id" });
   }
 
   const userExists = await User.find({ email: email });
@@ -108,6 +114,9 @@ const logoutUser = async (req, res) => {
     .json({ message: "Logout Successful" });
 };
 
+// @api /api/v1/user/auth
+// @desc api to fetch the current logged in user
+// @access protected
 const authorizeUser = async (req, res) => {
   const userId = req.user.id;
 

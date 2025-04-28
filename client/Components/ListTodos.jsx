@@ -11,15 +11,16 @@ const ListTodos = ({todos,editTask,isEditing,editData,setEditData,editTodoTitle,
     <><div className="list-todos">
               {todos.map((todo) => {
                 return (
-                  <li className="text-custom-primary-color my-3" key={todo._id}>
+                  <li className='text-custom-primary-color singleTodoContainer my-3' key={todo._id}>
                     <div className="todo-task d-flex bg-custom-secondary-color py-3 h-25">
                       <span style={{ width: "5%" }} className="checkSpan">
                         <input
-                          onClick={() => editTask(todo._id, todo.isDone)}
+                          // onClick={() => editTask(todo._id, todo.isDone)}
+                          onChange={() => editTask(todo._id, todo.isDone)}
                           type="checkbox"
                           checked={todo.isDone}
                           id={`isTodoCompleted-${todo._id}`}
-                          className="isTodoCompleted"
+                          className="isTodoCompleted" 
                           hidden
                         />
                         <label

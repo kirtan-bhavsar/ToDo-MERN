@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import { successNotification,errorNotification } from "../Utils/Notifications";
+import { useState } from "react";
 
-const TodoHeading = () => {
+const TodoHeading = ({user}) => {
 
     const navigate = useNavigate();
 
@@ -34,7 +35,8 @@ const TodoHeading = () => {
         <>
         <div className="HeaderContainer">
             {/* <h1 className="text-custom-heading-color HeaderHeadingPage my-2 fw-bold">My Todos</h1> */}
-            <h1 className="text-custom-heading-color HeaderHeading fw-bold">My Todos</h1>
+            <h1 className="text-custom-heading-color HeaderHeading fw-bold">Hello {user.name}! - What is on your List?</h1>
+            {/* <h1 className="text-custom-heading-color HeaderHeading fw-bold">`${user.name}`</h1> */}
             <FontAwesomeIcon icon={faArrowRightFromBracket} className="HeaderLogoutButton" onClick={logout}></FontAwesomeIcon>
             </div>
         </>

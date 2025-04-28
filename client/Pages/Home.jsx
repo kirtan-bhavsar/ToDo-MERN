@@ -3,11 +3,25 @@ import axios from "axios";
 import TodoHeading from "../Components/TodoHeading.jsx";
 import AddTodo from "../Components/AddTodo.jsx";
 import ListTodos from "../Components/ListTodos.jsx";
+import { successNotification,errorNotification } from "../Utils/Notifications.js";
+import CheckSound1 from "../Assets/CheckSound1.mp3";
 
 const Home = () => {
 
+  const playCheckSound = () => {
+    new Audio(CheckSound1).play();
+  }
+
+
+
     // Use States
   const [isEditing, setEditing] = useState(null);
+
+  const [displayCompleteTodos,setDisplayCompleteTodos] = useState(false);
+
+  const [user,setUser] = useState({
+    name:""
+  })
 
   const [data, setData] = useState({
     title: "",
@@ -25,9 +39,14 @@ const Home = () => {
   // Event Listeners for tasks
   const fetchData = async () => {
     try {
-      const apiData = await axios.get("/api/v1/todos");
+      let apiData;
+      if(displayCompleteTodos){
+         apiData = await axios.get("/api/v1/todos?isDone=true");
+      }else{
+         apiData = await axios.get("/api/v1/todos?isDone=false")
+      }
+      // apiData = await axios.get('/api/v1/todos');
       setTodos(apiData.data);
-      console.log("fetchData api called successfully");
       if (isEditing) {
         setEditing(null);
       }
@@ -36,14 +55,18 @@ const Home = () => {
     }
   };
 
+  const displayCompletedTodos = (e) => {
+    const checkState = e.target.checked;
+    setDisplayCompleteTodos(checkState);
+    fetchData();
+  }
+
   const addTask = async (e) => {
-    console.log(data);
 
     e.preventDefault();
 
     try {
       await axios.post("/api/v1/add", data);
-      console.log("API Call successful");
       data.title = "";
       addInputRef.current.focus();
       fetchData();
@@ -53,18 +76,18 @@ const Home = () => {
   };
 
   const deleteTask = async (id) => {
-    console.log("delete task called");
 
     try {
       await axios.delete(`/api/v1/delete/${id}`);
-      console.log(`Task deleted with the id ${id}`);
       fetchData();
+      successNotification("Task deleted Successfully");
     } catch (error) {
       console.log(error);
     }
   };
 
   const editTask = async (id, isDone) => {
+    playCheckSound();
     const body = {
       isDone: !isDone,
     };
@@ -72,13 +95,47 @@ const Home = () => {
     try {
       await axios.put(`/api/v1/edit/${id}`, body);
 
-      console.log(`task updated successfully with the id ${id}`);
 
       fetchData();
+
+      successNotification("Task completed successfully");
+
     } catch (error) {
       console.log(error);
     }
   };
+
+  // const editTask = async(id,isDone) => {
+
+  //   const updatedTodos = todos.map((todo)=> {
+  //     todo._id === id ? {...todo,isDone:!isDone} : todo
+  //   })
+
+  //   setTodos(updatedTodos);
+
+  //   const body = {isDone:!isDone}
+
+  //   try {
+  //     await axios.post(`/api/v1/edit/${id}`,body);
+  //     setTimeout(fetchData,1500)
+  //   } catch (error) {
+  //     console.log(error);
+  //     setTodos(todos);
+  //   }
+
+  // }
+
+const getUser = async() => {
+
+    try {
+       const res = await axios.get('/api/v1/user/auth');
+       setUser({name:res.data.data.name});
+    } catch (error) {
+        
+    }
+
+}
+
 
   
   const editTodoTitle = async (id) => {
@@ -93,6 +150,7 @@ const Home = () => {
       setEditData({
         title: "",
       });
+      successNotification("Task edited successfully");
       console.log("Edit Todo Title called after clicking check butotn");
     } catch (error) {
       console.log(error);
@@ -102,13 +160,14 @@ const Home = () => {
   // useEffect
   useEffect(() => {
     fetchData();
-  }, []);
+    getUser();
+  }, [displayCompleteTodos]);
 
   return (
     <>
-    <div className="container-fluid position-relative bg-custom-primary-color align-items-center d-flex flex-column">
-        <TodoHeading/>
-        <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} />
+    <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
+        <TodoHeading user={user} />
+        <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} displayCompletedTodos={displayCompletedTodos} />
         <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>
     </>

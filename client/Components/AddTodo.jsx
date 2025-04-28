@@ -1,9 +1,10 @@
 import React from 'react'
 
-const AddTodo = ({addTask,addInputRef,setData,data}) => {
+const AddTodo = ({addTask,addInputRef,setData,data,displayCompletedTodos}) => {
   return (
     <>
-    <form className="add-todo d-flex my-5" onSubmit={addTask}>
+    <form className="add-todo d-flex mt-5" onSubmit={addTask}>
+    {/* <form className="add-todo d-flex my-5" onSubmit={addTask}> */}
           <input
             ref={addInputRef}
             type="text"
@@ -18,6 +19,11 @@ const AddTodo = ({addTask,addInputRef,setData,data}) => {
             Add
           </button>
         </form>
+        <div className='todoDisplayToggleContainer'>
+          <input onChange={displayCompletedTodos} type="checkbox" id='todoDisplayToggle' className='' />
+          <label htmlFor="todoDisplayToggle" className='todoDisplayToggleButton'></label>
+          <small className='todoDisplayToggleInstruction'>Display completed todos</small>
+          </div>
     </>
   )
 }
