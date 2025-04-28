@@ -42,13 +42,13 @@ const createTodo = async (req, res) => {
 // @api /api/v1/todos
 // @access private
 const getAllTodos = async (req, res) => {
-  // const reqParam = req.query.isDone;
+  const isDone = req.query.isDone;
 
-  // if (reqParam) {
-  //   console.log(reqParam);
-  // } else {
-  //   console.log("Request query not included");
-  // }
+  if (isDone) {
+    console.log(req.query);
+  } else {
+    console.log("Request query not included");
+  }
 
   const userId = req.user.id;
 
@@ -65,7 +65,14 @@ const getAllTodos = async (req, res) => {
   }
 
   try {
-    const todos = await Todo.find({ user: userExists._id, isDone: false });
+    let todos;
+
+    if (isDone) {
+      todos = await Todo.find({ user: userExists._id, isDone: isDone });
+    } else {
+      // const todos = await Todo.find({ user: userExists._id, isDone: false });
+      todos = await Todo.find({ user: userExists._id });
+    }
     // const todos = await Todo.find({ user: userExists._id });
 
     if (todos.length == 0) {
