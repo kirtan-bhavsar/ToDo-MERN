@@ -4,8 +4,13 @@ import TodoHeading from "../Components/TodoHeading.jsx";
 import AddTodo from "../Components/AddTodo.jsx";
 import ListTodos from "../Components/ListTodos.jsx";
 import { successNotification,errorNotification } from "../Utils/Notifications.js";
+import CheckSound1 from "../Assets/CheckSound1.mp3";
 
 const Home = () => {
+
+  const playCheckSound = () => {
+    new Audio(CheckSound1).play();
+  }
 
     // Use States
   const [isEditing, setEditing] = useState(null);
@@ -62,6 +67,7 @@ const Home = () => {
   };
 
   const editTask = async (id, isDone) => {
+    playCheckSound();
     const body = {
       isDone: !isDone,
     };
