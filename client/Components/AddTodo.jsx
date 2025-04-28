@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AddTodo = ({addTask,addInputRef,setData,data}) => {
+const AddTodo = ({addTask,addInputRef,setData,data,displayCompletedTodos}) => {
   return (
     <>
     <form className="add-todo d-flex mt-5" onSubmit={addTask}>
@@ -20,7 +20,7 @@ const AddTodo = ({addTask,addInputRef,setData,data}) => {
           </button>
         </form>
         <div className='todoDisplayToggleContainer'>
-          <input type="checkbox" id='todoDisplayToggle' className='' />
+          <input onChange={displayCompletedTodos} type="checkbox" id='todoDisplayToggle' className='' />
           <label htmlFor="todoDisplayToggle" className='todoDisplayToggleButton'></label>
           <small className='todoDisplayToggleInstruction'>Display completed todos</small>
           </div>

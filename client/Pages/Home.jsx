@@ -17,6 +17,8 @@ const Home = () => {
     // Use States
   const [isEditing, setEditing] = useState(null);
 
+  const [displayCompleteTodos,setDisplayCompleteTodos] = useState(false);
+
   const [user,setUser] = useState({
     name:""
   })
@@ -37,7 +39,13 @@ const Home = () => {
   // Event Listeners for tasks
   const fetchData = async () => {
     try {
-      const apiData = await axios.get("/api/v1/todos");
+      let apiData;
+      if(displayCompleteTodos){
+         apiData = await axios.get("/api/v1/todos?isDone=true");
+      }else{
+         apiData = await axios.get("/api/v1/todos?isDone=false")
+      }
+      // apiData = await axios.get('/api/v1/todos');
       setTodos(apiData.data);
       if (isEditing) {
         setEditing(null);
@@ -46,6 +54,12 @@ const Home = () => {
       console.log(error);
     }
   };
+
+  const displayCompletedTodos = (e) => {
+    const checkState = e.target.checked;
+    setDisplayCompleteTodos(checkState);
+    fetchData();
+  }
 
   const addTask = async (e) => {
 
@@ -147,13 +161,13 @@ const getUser = async() => {
   useEffect(() => {
     fetchData();
     getUser();
-  }, []);
+  }, [displayCompleteTodos]);
 
   return (
     <>
     <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
-        <TodoHeading user={user}/>
-        <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} />
+        <TodoHeading user={user} />
+        <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} displayCompletedTodos={displayCompletedTodos} />
         <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>
     </>
