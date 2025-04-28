@@ -12,8 +12,14 @@ const Home = () => {
     new Audio(CheckSound1).play();
   }
 
+
+
     // Use States
   const [isEditing, setEditing] = useState(null);
+
+  const [user,setUser] = useState({
+    name:""
+  })
 
   const [data, setData] = useState({
     title: "",
@@ -105,6 +111,18 @@ const Home = () => {
 
   // }
 
+const getUser = async() => {
+
+    try {
+       const res = await axios.get('/api/v1/user/auth');
+       setUser({name:res.data.data.name});
+    } catch (error) {
+        
+    }
+
+}
+
+
   
   const editTodoTitle = async (id) => {
     const body = {
@@ -128,12 +146,13 @@ const Home = () => {
   // useEffect
   useEffect(() => {
     fetchData();
+    getUser();
   }, []);
 
   return (
     <>
     <div className="container-fluid Container position-relative bg-custom-primary-color align-items-center d-flex flex-column">
-        <TodoHeading/>
+        <TodoHeading user={user}/>
         <AddTodo addTask={addTask} addInputRef={addInputRef} setData={setData} data={data} />
         <ListTodos todos={todos} editTask={editTask} isEditing={isEditing} editData={editData} setEditData={setEditData} editTodoTitle={editTodoTitle} setEditing={setEditing} deleteTask={deleteTask} />
       </div>

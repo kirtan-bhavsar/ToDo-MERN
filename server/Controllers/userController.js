@@ -114,6 +114,9 @@ const logoutUser = async (req, res) => {
     .json({ message: "Logout Successful" });
 };
 
+// @api /api/v1/user/auth
+// @desc api to fetch the current logged in user
+// @access protected
 const authorizeUser = async (req, res) => {
   const userId = req.user.id;
 

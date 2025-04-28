@@ -54,20 +54,25 @@ body {
 .HeaderContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 100%;
 }
 
 .HeaderHeading {
-  position: relative;
-  left: 40%;
+  /* position: relative; */
+  /* left: 25%; */
+  width: 100%;
   margin-top: 20px;
+  text-align: center;
 }
 
 .HeaderLogoutButton {
   color: #a0a0a0;
   cursor: pointer;
-  margin-right: 20px;
+  margin-right: 10px;
+  /* width: 1%; */
+  text-align: center;
+  transform: scale(1);
 }
 
 input:focus {
@@ -108,11 +113,69 @@ input:focus {
   transition: background-color 0.3s ease;
 }
 
+/* Todo Display Toggle Button Styling */
+
+.todoDisplayToggleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  margin-top: 10px;
+  /* background-color: red; */
+  width: 50%;
+}
+
+#todoDisplayToggle {
+  display: none;
+}
+
+.todoDisplayToggleButton {
+  width: 40px;
+  height: 20px;
+  background-color: #2d2d2d;
+  border: 1px solid #bb86fc;
+  position: relative;
+  border-radius: 200px;
+  transition: all 0.3s;
+  /* left: 60%; */
+}
+
+.todoDisplayToggleButton::before {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  margin: 2px;
+  background-color: #bb86fc;
+  border-radius: 200px;
+  transition: all 0.3s;
+}
+
+#todoDisplayToggle:checked + .todoDisplayToggleButton {
+  background-color: #bb86fc;
+  border: 1px solid #a0a0a0;
+}
+
+#todoDisplayToggle:checked + .todoDisplayToggleButton::before {
+  background-color: #2d2d2d;
+  transform: translateX(20px);
+}
+
+.todoDisplayToggleInstruction {
+  /* display: block; */
+  color: #a0a0a0;
+  font-size: 12px;
+  /* margin-left: 150px; */
+}
 /* Listing Todo Styling */
 
 .list-todos {
   width: 50%;
 }
+/* 
+.list-todos li:first-child {
+  background-color: red;
+} */
 
 .list-todos li {
   list-style: none;
