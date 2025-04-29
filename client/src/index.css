@@ -1,3 +1,4 @@
+/* Colour Palette */
 /* --bg-primary: #121212;
 --bg-secondary: #1E1E1E;
 --text-primary: #E0E0E0;
@@ -7,7 +8,9 @@
 --danger: #CF6679;
 --border-color: #2D2D2D;
 --completed-text: #616161; */
+/* Colour Palette end */
 
+/* Root level styling */
 body {
   box-sizing: border-box;
 }
@@ -43,24 +46,22 @@ body {
 .btn-custom-hover-color {
   color: #9e65f5;
 }
+/* Root level Styling ends */
 
 /* Container Styling */
 .Container {
   min-height: 100vh;
 }
+/* Container Styling ends */
 
-/* Header Styling */
-
+/* Header Styling (TodoHeading.jsx)*/
 .HeaderContainer {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   width: 100%;
 }
 
 .HeaderHeading {
-  /* position: relative; */
-  /* left: 25%; */
   width: 100%;
   margin-top: 20px;
   text-align: center;
@@ -70,16 +71,19 @@ body {
   color: #a0a0a0;
   cursor: pointer;
   margin-right: 10px;
-  /* width: 1%; */
   text-align: center;
   transform: scale(1);
 }
+/* Header Styling ends */
 
+/* General Styling ? */
 input:focus {
   border: 2px solid #9e65f5;
   outline: none;
 }
+/* General Styling ends */
 
+/* Add & Toggle Styling (AddTodo.jsx) */
 .add-todo {
   width: 50%;
   gap: 0.5rem;
@@ -92,7 +96,7 @@ input:focus {
   color: #e0e0e0;
 }
 
-.addtask-input ::placeholder {
+.addtask-input::placeholder {
   color: #a0a0a0;
 }
 
@@ -121,7 +125,6 @@ input:focus {
   justify-content: center;
   align-items: end;
   margin-top: 10px;
-  /* background-color: red; */
   width: 50%;
 }
 
@@ -137,7 +140,6 @@ input:focus {
   position: relative;
   border-radius: 200px;
   transition: all 0.3s;
-  /* left: 60%; */
 }
 
 .todoDisplayToggleButton::before {
@@ -162,143 +164,34 @@ input:focus {
 }
 
 .todoDisplayToggleInstruction {
-  /* display: block; */
   color: #a0a0a0;
   font-size: 12px;
-  /* margin-left: 150px; */
 }
-/* Listing Todo Styling */
+/* Todo Display Toggle Button Styling ends */
+/* Add & Toggle Styling ends (AddTodo.jsx) */
+
+/* Todo Listing Styling (ListTodos.jsx)  */
 
 .list-todos {
   width: 50%;
 }
-/* 
-.list-todos li:first-child {
-  background-color: red;
-} */
 
 .list-todos li {
   list-style: none;
-  /* width: 50%; */
 }
 
 .todo-task {
   align-items: center;
   border-radius: 8px;
-  /* transition: 5s all ease-in-out; */
 }
 
-.isTodoCompleted:checked .todo-task {
-  background-color: #bb86fc;
-  /* transform: translate(500px); */
-  /* transform: ; */
-}
-
-.todo-task input {
-  border-radius: 5px;
-}
-
+/* Provides a pointer effect when hovered over edit or delete button */
 .todo-task .editTask,
 .todo-task .deleteTask {
   cursor: pointer;
 }
 
-.editTask,
-.deleteTask {
-  transition: all 2s;
-}
-
-.todo-task .editTask:hover {
-  /* background-color: #1b151e; */
-}
-
-.checkSpan {
-  margin-left: 10px;
-  /* padding-left: 10px; */
-  transition: all 5s;
-}
-
-/* .checkSpan:focus {
-  background-color: blue;
-  padding: 500px;
-  transform: translateX(-500px);
-} */
-
-/* when click on the check button this is being applied  */
-.checkSpan:active {
-  background-color: red;
-  /* padding: 100px; */
-  /* transform: translateX(500px); */
-}
-/* 
-.checkSpan:active ~ .titleDisplaySpan {
-  transform: translateX(1000px) rotate(45deg);
-  background-color: #9e65f5;
-  text-decoration: line-through;
-} */
-
-.isTodoCompleted:checked ~ .titleDisplaySpan {
-  transform: translateX(1000px);
-  background-color: #9e65f5;
-  /* background-color: cyan; */
-  text-decoration: line-through;
-}
-
-/* .checkSpan:active ~ span {
-  transform: translateX(500px);
-  background-color: #00ff7f;
-  text-decoration: line-through;
-} */
-
-.isTodoCompleted:checked + .deleteTask {
-  color: red;
-  padding: 500px;
-}
-
-.isTodoCompleted:checked + .editTask {
-  color: blue;
-  padding: 500px;
-}
-
-.isTodoCompleted:checked ~ input {
-  /* transform: translateX(-500px); */
-  /* background-color: #00ff7f; */
-  /* display: none; */
-}
-
-.titleDisplaySpan {
-  padding-bottom: 5px;
-  transition: all 1.5s;
-  /* animation: checkAnimation 2s 1 backwards; */
-}
-
-.checkSpan:active .titleDisplaySpan {
-  /* animation: checkAnimation 2s 1 forwards; */
-}
-
-/* @keyframes checkAnimation {
-  from {
-  }
-
-  to {
-    transform: translate(1000px, 100px);
-    background-color: #9e65f5;
-    text-decoration: line-through;
-  }
-} */
-/* .titleDisplaySpan {
-  padding-bottom: 5px;
-  transition: all ease-in-out 0.5s;
-} */
-
-.titleDisplayInput {
-  padding-bottom: 5px;
-  margin-right: 10px;
-  background-color: #1e1e1e;
-  color: #e0e0e0;
-  border: 1px solid #a0a0a0;
-}
-
+/* Check animation when the todo is marked isDone : true */
 .isTodoCompletedLabel {
   border: 1px solid white;
   width: 15px;
@@ -341,20 +234,95 @@ input:focus {
   background-color: #a874ff;
   border-color: #a874ff;
 }
+/* Check animation when the todo is marked isDone : true  ends*/
 
-/* Animation effect for check todo container*/
-.singleTodoContainer {
-  /* transform: rotate(180deg); */
-  /* background-color: cyan; */
-  /* transition: all ease-in-out 5s; */
+.todo-task .editTask:hover {
+  color: #7f7f7f;
 }
 
-.singleTodoContainer:hover {
-  /* background-color: cyan; */
+.todo-task .deleteTask:hover {
+  color: #7f7f7f;
+}
+
+/* Continue Clean up from here */
+
+.checkSpan {
+  margin-left: 10px;
+  width: 5%;
+  display: inline;
+  /* padding-left: 10px; */
+  transition: all 5s;
+  background-color: red;
+}
+
+/* .checkSpan:focus {
+  background-color: blue;
+  padding: 500px;
+  transform: translateX(-500px);
+} */
+
+/* when click on the check button this is being applied  */
+.checkSpan:active {
+  background-color: red;
+  /* padding: 100px; */
   /* transform: translateX(500px); */
 }
+/* 
+.checkSpan:active ~ .titleDisplaySpan {
+  transform: translateX(1000px) rotate(45deg);
+  background-color: #9e65f5;
+  text-decoration: line-through;
+} */
 
-/* Login and Signup Designing */
+.isTodoCompleted:checked ~ .titleDisplaySpan {
+  /* transform: translateX(1000px); */
+  background-color: #9e65f5;
+  /* background-color: cyan; */
+  text-decoration: line-through;
+}
+
+/* .checkSpan:active ~ span {
+  transform: translateX(500px);
+  background-color: #00ff7f;
+  text-decoration: line-through;
+} */
+
+.titleDisplaySpan {
+  padding-bottom: 5px;
+  transition: all 1.5s;
+  /* animation: checkAnimation 2s 1 backwards; */
+}
+
+.checkSpan:active .titleDisplaySpan {
+  /* animation: checkAnimation 2s 1 forwards; */
+}
+
+/* @keyframes checkAnimation {
+  from {
+  }
+
+  to {
+    transform: translate(1000px, 100px);
+    background-color: #9e65f5;
+    text-decoration: line-through;
+  }
+} */
+/* .titleDisplaySpan {
+  padding-bottom: 5px;
+  transition: all ease-in-out 0.5s;
+} */
+
+.titleDisplayInput {
+  padding-bottom: 5px;
+  margin-right: 10px;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border: 1px solid #a0a0a0;
+}
+
+/* Todo Listing styling ends (ListTodos.jsx)  */
+
+/* Login Styling (LoginForm.jsx) */
 
 .LoginContainer {
   background-color: #121212;
@@ -425,32 +393,6 @@ input:focus {
   border: 1px solid #bb86fc !important;
 }
 
-/* My change for autofill */
-/* .LoginForm .InputGroup .EmailInput input:-webkit-autofill,
-.LoginForm .InputGroup .EmailInput input:-webkit-autofill:focus,
-.LoginForm .InputGroup .EmailInput input:-webkit-autofill:active,
-.LoginForm .InputGroup .EmailInput input:-internal-autofill-selected,
-.LoginForm .InputGroup .EmailInput input:-internal-autofill-selected:focus,
-.LoginForm .InputGroup .EmailInput input:-internal-autofill-selected:active {
-  background-color: red !important;
-} */
-
-/* google recommendation for autofill */
-/* .LoginForm .InputGroup input:-webkit-autofill,
-.LoginForm .InputGroup input:-webkit-autofill:hover,
-.LoginForm .InputGroup input:-webkit-autofill:focus,
-.LoginForm .InputGroup input:-internal-autofill-selected,
-.LoginForm .InputGroup input:-internal-autofill-selected:focus,
-.LoginForm .InputGroup input:-internal-autofill-selected:active {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  background-color: #121212;
-  color: #e0e0e0;
-  background-image: none !important;
-  border: 1px solid #2d2d2d !important;
-  box-shadow: none !important;
-} */
-
 /* Deepseek recommendation for autofill  -  Don't know but it magically works*/
 .LoginForm .InputGroup input:-webkit-autofill,
 .LoginForm .InputGroup input:-webkit-autofill:hover,
@@ -461,35 +403,6 @@ input:focus {
   caret-color: #e0e0e0;
   border: 1px solid #bb86fc !important;
 }
-
-/* input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-internal-autofill-selected {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  background-image: none !important;
-  background-color: #121212 !important;
-  color: #a0a0a0 !important;
-} */
-
-/* Recommendation by microsoft copilot
-/* Autofill Background Override */
-/* .LoginForm .InputGroup input:-webkit-autofill {
-  background-color: #121212 !important;
-  color: #e0e0e0 !important;
-  border: 1px solid #2d2d2d !important;
-  -webkit-box-shadow: 0 0 0px 1000px #121212 inset !important;
-  transition: background-color 5000s ease-in-out 0s; 
-}
-
-.LoginForm .InputGroup input:-webkit-autofill:hover,
-.LoginForm .InputGroup input:-webkit-autofill:focus {
-  background-color: #121212 !important;
-  color: #e0e0e0 !important;
-  border: 1px solid #bb86fc !important;
-  -webkit-box-shadow: 0 0 0px 1000px #121212 inset !important;
-} */
 
 .LoginForm button {
   margin-top: 10px;
@@ -538,14 +451,14 @@ input:-internal-autofill-selected {
 .SignupLink {
   text-decoration: none;
   color: #bb86fc;
-  /* background-color: red; */
 }
 
 .SignupLink:hover {
   color: #9e65f5;
 }
+/* Login Styling ends (LoginForm.jsx) */
 
-/* Designing Signup form */
+/* Signup Styling (SignupForm.jsx) */
 
 .SignupContainer {
   background-color: #121212;
@@ -620,15 +533,6 @@ input:-internal-autofill-selected {
 .SignupForm .InputGroup input:focus {
   border: #9e65f5 1px solid;
 }
-/* 
-.SignupForm .InputGroup input:-webkit-autofill {
-   padding: 100px; 
-  -webkit-box-shadow: 0 0 0 30px #121212 inset !important;
-  -webkit-text-fill-color: #e0e0e0 !important;
-  caret-color: #e0e0e0;
-  border-radius: 8px; 
-  border: 1px solid #2d2d2d !important;  
-} */
 
 input::-webkit-contacts-auto-fill-button,
 input::-webkit-credentials-auto-fill-button {
@@ -656,3 +560,5 @@ input::-webkit-credentials-auto-fill-button {
 .SignupForm .InputGroup .successIndication:focus {
   border: 1px solid #00ff7f;
 }
+
+/* Signup Styling ends (SignupForm.jsx) */
