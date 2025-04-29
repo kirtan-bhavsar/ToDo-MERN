@@ -75,9 +75,12 @@ const getAllTodos = async (req, res) => {
     }
     // const todos = await Todo.find({ user: userExists._id });
 
-    if (todos.length == 0) {
-      return res.status(400).json({ message: "No todos found" });
-    }
+    // if (todos.length == 0) {
+    //   return res.status(200).json(todos);
+    // }
+    // if (todos.length == 0) {
+    //   return res.status(400).json({ message: "No todos found" });
+    // }
 
     res.status(200).json(todos);
   } catch (error) {
@@ -231,7 +234,7 @@ const deleteTodo = async (req, res) => {
   const todo = await Todo.findById(todoId);
 
   if (!todo) {
-    return res.status(400).json({ messge: "No todo found with this id" });
+    return res.status(400).json({ message: "No todo found with this id" });
   }
 
   const todoUser = todo.user;
