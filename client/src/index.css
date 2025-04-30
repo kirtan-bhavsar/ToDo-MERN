@@ -199,6 +199,7 @@ input:focus {
   border-radius: 50%;
   transition: 0.3s;
   overflow: hidden;
+  margin: 5px;
 }
 
 .line {
@@ -236,90 +237,34 @@ input:focus {
 }
 /* Check animation when the todo is marked isDone : true  ends*/
 
+/* will change the edit task fa button when hovered */
 .todo-task .editTask:hover {
   color: #7f7f7f;
 }
 
+/* will change the delete task fa button when hovered */
 .todo-task .deleteTask:hover {
   color: #7f7f7f;
 }
 
-/* Continue Clean up from here */
-
-.checkSpan {
-  margin-left: 10px;
-  width: 5%;
-  display: inline;
-  /* padding-left: 10px; */
-  transition: all 5s;
-  background-color: red;
-}
-
-/* .checkSpan:focus {
-  background-color: blue;
-  padding: 500px;
-  transform: translateX(-500px);
-} */
-
-/* when click on the check button this is being applied  */
-.checkSpan:active {
-  background-color: red;
-  /* padding: 100px; */
-  /* transform: translateX(500px); */
-}
-/* 
-.checkSpan:active ~ .titleDisplaySpan {
-  transform: translateX(1000px) rotate(45deg);
-  background-color: #9e65f5;
-  text-decoration: line-through;
-} */
-
+/* when click on the check button this short animation is being applied  */
 .isTodoCompleted:checked ~ .titleDisplaySpan {
-  /* transform: translateX(1000px); */
-  background-color: #9e65f5;
-  /* background-color: cyan; */
   text-decoration: line-through;
 }
-
-/* .checkSpan:active ~ span {
-  transform: translateX(500px);
-  background-color: #00ff7f;
-  text-decoration: line-through;
-} */
 
 .titleDisplaySpan {
   padding-bottom: 5px;
   transition: all 1.5s;
-  /* animation: checkAnimation 2s 1 backwards; */
 }
-
-.checkSpan:active .titleDisplaySpan {
-  /* animation: checkAnimation 2s 1 forwards; */
-}
-
-/* @keyframes checkAnimation {
-  from {
-  }
-
-  to {
-    transform: translate(1000px, 100px);
-    background-color: #9e65f5;
-    text-decoration: line-through;
-  }
-} */
-/* .titleDisplaySpan {
-  padding-bottom: 5px;
-  transition: all ease-in-out 0.5s;
-} */
 
 .titleDisplayInput {
   padding-bottom: 5px;
   margin-right: 10px;
+  border-radius: 5px;
   background-color: #1e1e1e;
   color: #e0e0e0;
   border: 1px solid #a0a0a0;
 }
-
 /* Todo Listing styling ends (ListTodos.jsx)  */
 
 /* Login Styling (LoginForm.jsx) */

@@ -9,7 +9,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 const ListTodos = ({todos,editTask,isEditing,editData,setEditData,editTodoTitle,setEditing ,deleteTask}) => {
   return (
     <><div className="list-todos">
-              { todos.length === 0 ? (<p className='text-custom-primary-color py-5 text-center'>No incomplete Todos Left !! Add New Ones</p>) : (
+              { todos.length === 0 ? (<p className='text-custom-primary-color py-5 text-center'>No Todos Left !! Add New Ones</p>) : (
               todos.map((todo) => {
                 return (
                   <li className='text-custom-primary-color singleTodoContainer my-3' key={todo._id}>
