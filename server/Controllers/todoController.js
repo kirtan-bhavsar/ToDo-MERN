@@ -44,12 +44,6 @@ const createTodo = async (req, res) => {
 const getAllTodos = async (req, res) => {
   const isDone = req.query.isDone;
 
-  if (isDone) {
-    console.log(req.query);
-  } else {
-    console.log("Request query not included");
-  }
-
   const userId = req.user.id;
 
   if (!userId) {
@@ -123,11 +117,7 @@ const getTodoById = async (req, res) => {
   try {
     const todoUser = todo.user;
 
-    console.log(todoUser + " todoUser");
-    console.log(userExists.id + " userExists.id");
-
     if (userExists.id === todoUser.toString()) {
-      console.log("Condition Matching");
       return res.status(200).json(todo);
     } else {
       return res.status(400).json({
@@ -149,8 +139,6 @@ const getTodoById = async (req, res) => {
 const editTodo = async (req, res) => {
   const userId = req.user.id;
 
-  console.log(userId + " userId");
-
   if (!userId) {
     return res
       .status(400)
@@ -159,16 +147,12 @@ const editTodo = async (req, res) => {
 
   const userExists = await User.findOne({ _id: userId });
 
-  console.log(userExists + " userExists");
-
   if (!userExists) {
     return res.status(400).json({ message: "User not found" });
   }
 
   try {
     const todoId = req.params.id;
-
-    console.log(todoId + " todo Id");
 
     if (!todoId) {
       return res
@@ -177,8 +161,6 @@ const editTodo = async (req, res) => {
     }
 
     const todo = await Todo.findById(todoId);
-
-    console.log(todo + " todo");
 
     if (!todo) {
       return res.status(404).json({ message: "No todo found with this id" });
