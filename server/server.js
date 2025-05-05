@@ -42,6 +42,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
 });
 
+app.get("/api/v1/trial", (req, res) => {
+  res.status(200).json({ message: "API Running successfully" });
+});
+
 app.listen(port, () => {
   console.log(`Server Running successfully on Port ${port}`);
 });
