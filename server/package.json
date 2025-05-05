@@ -9,7 +9,8 @@
     "deleteUsers": "node scripts/deleteUsers.js",
     "deleteTodos": "node scripts/deleteTodosForTestUser.js",
     "start" : "node server.js",
-    "test2" : "nodemon server.js"
+    "test2" : "nodemon server.js",
+    "test3" : "nodemon server.js"
   },
   "keywords": [],
   "author": "",
