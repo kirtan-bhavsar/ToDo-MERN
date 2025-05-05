@@ -31,8 +31,6 @@ const Home = () => {
 
   const [todos, setTodos] = useState([]);
 
-  // const [forceRender,setForceRerender] = useState(false);
-
 //   useRefs
   const addInputRef = useRef(null);
 
@@ -45,8 +43,7 @@ const Home = () => {
       }else{
          apiData = await axios.get("/api/v1/todos?isDone=false")
       }
-      // apiData = await axios.get('/api/v1/todos');
-      console.log(apiData.data);
+      
       setTodos(apiData.data);
       if (isEditing) {
         setEditing(null);
@@ -54,9 +51,8 @@ const Home = () => {
     } catch (error) {
       console.log(error);
       if((error.response.data.message === "No todos found") || (error.response.data.message === "No todo found with this id")){
-        // const successNotificationMessage = displayCompleteTodos ? "No completed todos found" : "No imcomplete todos left !";
-        // successNotification(successNotificationMessage);
-        console.log("Either all the todos have been comleted or deleted");
+        
+        
      }
     }
   };
@@ -64,7 +60,6 @@ const Home = () => {
   const displayCompletedTodos = (e) => {
     const checkState = e.target.checked;
     setDisplayCompleteTodos(checkState);
-    // fetchData();
   }
 
   const addTask = async (e) => {
@@ -90,7 +85,6 @@ const Home = () => {
     } catch (error) {
       console.log(error);
       if(error.response.data.message === "No todo found with this id"){
-        console.log("This error occurs as the todo is deleted but not from the display");
       }
     }
   };
@@ -113,105 +107,13 @@ const Home = () => {
       if(!isDone){
       successNotification("Task completed successfully");
       }
-      // fetchData();
-
+    
     } catch (error) {
       console.log(error);
     } finally{
       setTimeout(fetchData,500);
     }
   };
-  // const geminiEditTask = async (id, isDone) => {
-  //   if(!isDone){
-  //   playCheckSound();
-  //   }
-  //   const body = {
-  //     isDone: !isDone,
-  //   };
-
-  //   const updatedTodos = todos.map(todo => todo._id === id ? {...todo,isDone:!isDone} : todo);
-
-  //   setTodos(updatedTodos);
-  //   console.log(updatedTodos.length + " updated todos length" + updatedTodos);
-  //   // setTodos([...updatedTodos]);
-
-
-  //   if(!isDone && !displayCompleteTodos && updatedTodos.filter(todo => !todo.isDone).length === 0){
-  //     successNotification("No incomplete todos left ! 'from editTask try block' ");
-  //     } else if (!isDone){
-  //       successNotification("Task Completed Successfully")
-  //     }
-
-  //   try {
-  //     await axios.put(`/api/v1/edit/${id}`, body);
-
-  //   } catch (error) {
-  //     console.log(error);
-  //     setTodos(todos);
-  //     errorNotification("Failed to complete task");
-  //   } finally{
-  //     // setTimeout(fetchData,500);
-  //     setTimeout(()=> {
-  //       fetchData();
-  //     },500)
-  //   }
-
-  // };
-
-  // const animationAppliedEditTask = async (id, isDone) => {
-  //   if (!isDone) {
-  //     playCheckSound();
-  //   }
-  //   const body = {
-  //     isDone: !isDone,
-  //   };
-  
-  //   // Optimistically update the todos state
-  //   const updatedTodos = todos.map((todo) =>
-  //     todo._id === id ? { ...todo, isDone: !isDone } : todo
-  //   );
-  //   setTodos(updatedTodos);
-  
-  //   try {
-  //     await axios.put(`/api/v1/edit/${id}`, body);
-  //     // If it was the last incomplete todo and we were viewing incomplete ones
-  //     if (!isDone && !displayCompleteTodos && updatedTodos.filter(todo => !todo.isDone).length === 0) {
-  //       successNotification("Task completed successfully. No incomplete todos left!");
-  //     } else if (!isDone) {
-  //       successNotification("Task completed successfully");
-  //     }
-  //     // No need to immediately fetchData here, the state is already updated optimistically
-  //     // fetchData(); // Remove this line
-  //   } catch (error) {
-  //     console.log(error);
-  //     // If the API call fails, revert the optimistic update
-  //     setTodos(todos);
-  //     errorNotification("Failed to update task.");
-  //   } finally {
-  //     // Fetch data again after a short delay to ensure data consistency
-  //     setTimeout(fetchData, 500); // Adjust the delay as needed
-  //   }
-  // };
-
-  // const editTask = async(id,isDone) => {
-
-  //   const updatedTodos = todos.map((todo)=> {
-  //     todo._id === id ? {...todo,isDone:!isDone} : todo
-  //   })
-
-  //   setTodos(updatedTodos);
-
-  //   const body = {isDone:!isDone}
-
-  //   try {
-  //     await axios.post(`/api/v1/edit/${id}`,body);
-  //     setTimeout(fetchData,1500)
-  //   } catch (error) {
-  //     console.log(error);
-  //     setTodos(todos);
-  //   }
-
-  // }
 
 const getUser = async() => {
 
@@ -237,7 +139,6 @@ const getUser = async() => {
         title: "",
       });
       successNotification("Task edited successfully");
-      console.log("Edit Todo Title called after clicking check butotn");
     } catch (error) {
       console.log(error);
     }

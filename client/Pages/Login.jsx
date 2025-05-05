@@ -13,14 +13,12 @@ const Login = () => {
 
    const checkLoginStatus = async() => {
 
-    console.log("checkLoginStatus called");
 
       try {
         
       const response =   await axios.get("/api/v1/user/auth");
 
       if(response.status === 200){
-        console.log(response);
         setIsAuthenticated(true);
         navigate('/home');
       } else {
