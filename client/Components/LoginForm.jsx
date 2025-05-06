@@ -10,6 +10,8 @@ import dotenv from 'dotenv/config';
 
 const LoginForm = () => {
 
+  const apiUrl = process.env.VITE_API_BASE_URL;
+
   const [data,setData] = useState({
     email:"",
     password:""
@@ -26,7 +28,7 @@ const LoginForm = () => {
       e.preventDefault();
 
       try {
-        await axios.post(`${process.env.VITE_API_BASE_URL}/api/v1/user/login`, data);
+        await axios.post(`${apiUrl}/api/v1/user/login`, data);
         successNotification("Login Successful");
         navigate('/home');
       } catch (error) {

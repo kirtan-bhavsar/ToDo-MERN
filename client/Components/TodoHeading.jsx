@@ -10,13 +10,15 @@ import dotenv from 'dotenv/config';
 
 const TodoHeading = ({user}) => {
 
+    const apiUrl = process.env.VITE_API_BASE_URL;
+
     const navigate = useNavigate();
 
     const logout = async() => {
 
         try {
          
-        const response = await axios.post(`${process.env.VITE_API_BASE_URL}/api/v1/user/logout`);
+        const response = await axios.post(`${apiUrl}/api/v1/user/logout`);
 
         navigate('/login');
 

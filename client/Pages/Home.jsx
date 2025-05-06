@@ -9,6 +9,8 @@ import dotenv from 'dotenv/config';
 
 const Home = () => {
 
+  const apiUrl = process.env.VITE_API_BASE_URL;
+
   const playCheckSound = () => {
     new Audio(CheckSound1).play();
   }
@@ -40,9 +42,9 @@ const Home = () => {
     try {
       let apiData;
       if(displayCompleteTodos){
-         apiData = await axios.get(`${process.env.VITE_API_BASE_URL}/api/v1/todos?isDone=true`);
+         apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=true`);
       }else{
-         apiData = await axios.get(`${process.env.VITE_API_BASE_URL}/api/v1/todos?isDone=false`)
+         apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=false`)
       }
       
       setTodos(apiData.data);
@@ -68,7 +70,7 @@ const Home = () => {
     e.preventDefault();
 
     try {
-      await axios.post(`${process.env.VITE_API_BASE_URL}/api/v1/add`, data);
+      await axios.post(`${apiUrl}/api/v1/add`, data);
       data.title = "";
       addInputRef.current.focus();
       fetchData();
@@ -80,7 +82,7 @@ const Home = () => {
   const deleteTask = async (id) => {
 
     try {
-      await axios.delete(`${process.env.VITE_API_BASE_URL}/api/v1/delete/${id}`);
+      await axios.delete(`${apiUrl}/api/v1/delete/${id}`);
       fetchData();
       successNotification("Task deleted Successfully");
     } catch (error) {
@@ -103,7 +105,7 @@ const Home = () => {
     setTodos(updatedTodos);
 
     try {
-      await axios.put(`${process.env.VITE_API_BASE_URL}/api/v1/edit/${id}`, body);
+      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body);
 
       if(!isDone){
       successNotification("Task completed successfully");
@@ -119,7 +121,7 @@ const Home = () => {
 const getUser = async() => {
 
     try {
-       const res = await axios.get(`${process.env.VITE_API_BASE_URL}/api/v1/user/auth`);
+       const res = await axios.get(`${apiUrl}/api/v1/user/auth`);
        setUser({name:res.data.data.name});
     } catch (error) {
         
@@ -133,7 +135,7 @@ const getUser = async() => {
     };
 
     try {
-      await axios.put(`${process.env.VITE_API_BASE_URL}/api/v1/edit/${id}`, body);
+      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body);
       fetchData();
       // setEditing(null);
       setEditData({
