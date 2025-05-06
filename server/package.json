@@ -8,8 +8,8 @@
     "server": "nodemon server",
     "deleteUsers": "node scripts/deleteUsers.js",
     "deleteTodos": "node scripts/deleteTodosForTestUser.js",
-  "start": "node server.js",
-  "heroku-postbuild": "cd ../client && npm install && npm run build && cp -a build/. ../server/client/"
+    "start": "node server.js",
+    "heroku-postbuild": "cd ../client && npm install && npm run build && cp -a build/. ../server/client/"
   },
   "keywords": [],
   "author": "",
