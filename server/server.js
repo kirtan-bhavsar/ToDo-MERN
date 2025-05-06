@@ -33,14 +33,14 @@ connectDB();
 app.use("/api/v1", todoRouter);
 app.use("/api/v1/user", userRouter);
 
-// Serve static files from the 'client' directory for requests to the root path '/'
-app.use("/", express.static(path.join(__dirname, "client")));
+// // Serve static files from the 'client' directory for requests to the root path '/'
+// app.use("/", express.static(path.join(__dirname, "client")));
 
-// The "catchall" handler: for any request that doesn't match API routes or static files,
-// send back the main index.html.
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "index.html"));
-});
+// // The "catchall" handler: for any request that doesn't match API routes or static files,
+// // send back the main index.html.
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "index.html"));
+// });
 
 app.get("/api/v1/trial", (req, res) => {
   res.status(200).json({ message: "API Running successfully" });
