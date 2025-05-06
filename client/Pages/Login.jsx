@@ -6,6 +6,8 @@ import dotenv from 'dotenv/config';
 
 const Login = () => {
 
+  const apiUrl = process.env.VITE_API_BASE_URL;
+
   const navigate = useNavigate();
 
   const[isAuthenticated,setIsAuthenticated] = useState(false);
@@ -17,7 +19,7 @@ const Login = () => {
 
       try {
         
-      const response =   await axios.get(`${process.env.VITE_API_BASE_URL}/api/v1/user/auth`);
+      const response =   await axios.get(`${apiUrl}/api/v1/user/auth`);
 
       if(response.status === 200){
         setIsAuthenticated(true);
