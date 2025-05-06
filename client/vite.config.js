@@ -10,7 +10,7 @@ export default defineConfig({
       "/api/v1": {
         target: "https://twodo-o071.onrender.com",
         changeOrigin: true,
-        secure: false,
+        secure: true,
       },
     },
   },
