@@ -457,7 +457,8 @@ input:focus {
 }
 
 .SignupForm form button:hover {
-  color: #9e65f5;
+  background-color: #9e65f5;
+  /* color: red  ; */
 }
 
 .SignupForm .footer {

@@ -11,7 +11,6 @@ const generateToken = async (res, user) => {
   const cookieOptions = {
     httpOnly: true,
     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-    // expires: new Date(Date.now() + 100 * 1000),
   };
 
   jwt.sign(
@@ -20,13 +19,6 @@ const generateToken = async (res, user) => {
     { expiresIn: "7d" },
     (err, token) => {
       if (err) console.log(err);
-
-      // res.cookie("jwtToken", token, {
-      //   httpOnly: true,
-      //   secure: false,
-      //   maxAge: 7 * 24 * 60 * 60 * 1000,
-      // });
-      // res.status(200).json({ data: user, token: token });
 
       res
         .status(200)

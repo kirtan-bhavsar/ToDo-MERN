@@ -1,26 +1,7 @@
-import React from "react";
 import config from "dotenv/config";
 import jwt from "jsonwebtoken";
 
 const auth = async (req, res, next) => {
-  // console.log(req.cookies.jwtToken + " cookie printed");
-  // let token;
-
-  // if (req.headers["x-auth-token"]) {
-  //   token = req.headers["x-auth-token"];
-  // } else if (req.headers.authorization || req.cookies.jwtToken) {
-  //   console.log(req.headers);
-  //   // token = req.headers.authorization.split(" ")[1] || req.cookies.jwtToken;
-
-  //   token = req.headers.authorization.split(" ")[1]
-  //     ? req.headers.authorization.split(" ")[1]
-  //     : req.cookies.jwtToken;
-  // } else {
-  //   return res
-  //     .status(400)
-  //     .json({ message: "Invalid request, as not token found" });
-  // }
-
   let token;
 
   token = req.cookies?.jwtToken;
@@ -42,7 +23,6 @@ const auth = async (req, res, next) => {
   }
 
   try {
-    // console.log(token + " token printed");
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     req.user = decoded.user;

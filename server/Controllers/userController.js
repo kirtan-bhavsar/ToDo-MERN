@@ -50,26 +50,6 @@ const registerUser = async (req, res) => {
   user.save();
 
   generateToken(res, user);
-
-  // // Generate Token
-  // const payload = {
-  //   user: {
-  //     id: user.id,
-  //   },
-  // };
-
-  // jwt.sign(
-  //   payload,
-  //   process.env.JWT_SECRET,
-  //   { expiresIn: "5d" },
-  //   (err, token) => {
-  //     if (err) console.log(err);
-  //     res.status(200).json({ data: user, token: token });
-  //   }
-  // );
-
-  // res.status(200).json({ message: "dev ongoing" });
-  // res.status(200).json({});
 };
 
 const loginUser = async (req, res) => {
@@ -133,9 +113,6 @@ const authorizeUser = async (req, res) => {
   try {
     res.status(200).json({ data: user, message: "User logged in" });
   } catch (error) {
-    console.log("error log starts");
-    console.log(error + " logged error");
-    console.log("error log ends");
     return res.status(500).json({ message: error });
   }
 };

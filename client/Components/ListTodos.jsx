@@ -43,7 +43,6 @@ const ListTodos = ({todos,editTask,isEditing,editData,setEditData,editTodoTitle,
                           type="text"
                           value={editData.title}
                           onChange={(e) => {
-                            console.log("edit data input field called");
                             setEditData({ ...editData, title: e.target.value });
                           }}
                           onKeyDown={(e) => {
@@ -78,7 +77,6 @@ const ListTodos = ({todos,editTask,isEditing,editData,setEditData,editTodoTitle,
                             icon={faPenToSquare}
                             onClick={() => {
                               setEditing(todo._id);
-                              console.log("edit button clicked");
                               setEditData({ ...editData, title: todo.title });
                             }}
                           ></FontAwesomeIcon>
