@@ -6,6 +6,7 @@ import {
   successNotification,
   errorNotification,
 } from "../Utils/Notifications.js";
+import dotenv from 'dotenv/config';
 
 const SignupForm = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const SignupForm = () => {
         errorNotification("Passwords do not match");
       } else {
 
-      const response = await axios.post("/api/v1/user/register", formData);
+      const response = await axios.post(`${process.env.VITE_API_BASE_URL}/api/v1/user/register`, formData);
       if (response.status === 200) {
         navigate("/home");
         successNotification("Registration Successful");
