@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3500,
     proxy: {
       "/api/v1": {
-        target: "http://localhost:5500",
+        target: "https://twodo-o071.onrender.com",
         changeOrigin: true,
         secure: false,
       },
