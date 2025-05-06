@@ -5,6 +5,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import {ToastContainer,toast,Slide} from 'react-toastify';
 import { successNotification,errorNotification } from '../Utils/Notifications.js';
+import dotenv from 'dotenv/config';
 // import 'react-toastify/dist/ReactToastify.css'; // Make sure you have this import
 
 const LoginForm = () => {
@@ -25,7 +26,7 @@ const LoginForm = () => {
       e.preventDefault();
 
       try {
-        await axios.post("/api/v1/user/login", data);
+        await axios.post(`${process.env.VITE_API_BASE_URL}/api/v1/user/login`, data);
         successNotification("Login Successful");
         navigate('/home');
       } catch (error) {
