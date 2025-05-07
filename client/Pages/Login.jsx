@@ -19,8 +19,8 @@ const Login = () => {
 
       try {
         
-      // const response =   await axios.get(`${apiUrl}/api/v1/user/auth`);
-      const response =   await axios.get(`/api/v1/user/auth`);
+      const response =   await axios.get(`${apiUrl}/api/v1/user/auth`,{ withCredentials: true });
+      // const response =   await axios.get(`/api/v1/user/auth`);
 
       if(response.status === 200){
         setIsAuthenticated(true);

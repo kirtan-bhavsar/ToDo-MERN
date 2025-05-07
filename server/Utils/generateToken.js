@@ -41,11 +41,15 @@ const generateToken = async (res, user) => {
     },
   };
 
+  console.log(user.id, payload + " res,user,payload");
+
   const cookieOptions = {
     httpOnly: true,
     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
     // expires: new Date(Date.now() + 100 * 1000),
   };
+
+  console.log(cookieOptions + "Cookie Options");
 
   jwt.sign(
     payload,
@@ -65,6 +69,8 @@ const generateToken = async (res, user) => {
         .status(200)
         .cookie("jwtToken", token, cookieOptions)
         .json({ data: user, token });
+
+      console.log(user, token + " user,token");
     }
   );
 };

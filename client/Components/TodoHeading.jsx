@@ -18,8 +18,8 @@ const TodoHeading = ({user}) => {
 
         try {
          
-        // const response = await axios.post(`${apiUrl}/api/v1/user/logout`);
-        const response = await axios.post(`/api/v1/user/logout`);
+        const response = await axios.post(`${apiUrl}/api/v1/user/logout`,{ withCredentials: true });
+        // const response = await axios.post(`/api/v1/user/logout`);
 
         navigate('/login');
 

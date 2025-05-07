@@ -30,7 +30,8 @@ const LoginForm = () => {
       e.preventDefault();
 
       try {
-        await axios.post(`/api/v1/user/login`, data);
+        // await axios.post(`/api/v1/user/login`, data);
+        await axios.post(`${apiUrl}/api/v1/user/login`, data,{ withCredentials: true });
         console.log(data);
         console.log(apiUrl + "_____apiUrl___");
         successNotification("Login Successful");
