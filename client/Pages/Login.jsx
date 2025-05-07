@@ -2,11 +2,11 @@ import react, { useEffect, useState } from "react";
 import LoginForm from "../Components/LoginForm.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import dotenv from 'dotenv/config';
+// import dotenv from 'dotenv/config';
 
 const Login = () => {
 
-  const apiUrl = process.env.VITE_API_BASE_URL;
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
   const navigate = useNavigate();
 
@@ -19,7 +19,8 @@ const Login = () => {
 
       try {
         
-      const response =   await axios.get(`${apiUrl}/api/v1/user/auth`);
+      // const response =   await axios.get(`${apiUrl}/api/v1/user/auth`);
+      const response =   await axios.get(`/api/v1/user/auth`);
 
       if(response.status === 200){
         setIsAuthenticated(true);

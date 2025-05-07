@@ -5,12 +5,12 @@ import { useState } from 'react';
 import axios from 'axios';
 import {ToastContainer,toast,Slide} from 'react-toastify';
 import { successNotification,errorNotification } from '../Utils/Notifications.js';
-import dotenv from 'dotenv/config';
+// import dotenv from 'dotenv/config';
 // import 'react-toastify/dist/ReactToastify.css'; // Make sure you have this import
 
 const LoginForm = () => {
 
-  const apiUrl = process.env.VITE_API_BASE_URL;
+  const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
   const [data,setData] = useState({
     email:"",
@@ -25,10 +25,14 @@ const LoginForm = () => {
   
     const loginUser = async (e,data) => {
 
+      console.log("loginUser called");
+
       e.preventDefault();
 
       try {
-        await axios.post(`${apiUrl}/api/v1/user/login`, data);
+        await axios.post(`/api/v1/user/login`, data);
+        console.log(data);
+        console.log(apiUrl + "_____apiUrl___");
         successNotification("Login Successful");
         navigate('/home');
       } catch (error) {

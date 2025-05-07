@@ -5,12 +5,12 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import { successNotification,errorNotification } from "../Utils/Notifications";
 import { useState } from "react";
-import dotenv from 'dotenv/config';
+// import dotenv from 'dotenv/config';
 
 
 const TodoHeading = ({user}) => {
 
-    const apiUrl = process.env.VITE_API_BASE_URL;
+    const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
     const navigate = useNavigate();
 
@@ -18,7 +18,8 @@ const TodoHeading = ({user}) => {
 
         try {
          
-        const response = await axios.post(`${apiUrl}/api/v1/user/logout`);
+        // const response = await axios.post(`${apiUrl}/api/v1/user/logout`);
+        const response = await axios.post(`/api/v1/user/logout`);
 
         navigate('/login');
 
