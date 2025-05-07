@@ -50,8 +50,8 @@ const SignupForm = () => {
         errorNotification("Passwords do not match");
       } else {
 
-      // const response = await axios.post(`${apiUrl}//api/v1/user/register`, formData);
-      const response = await axios.post(`/api/v1/user/register`, formData);
+      const response = await axios.post(`${apiUrl}//api/v1/user/register`, formData,{ withCredentials: true });
+      // const response = await axios.post(`/api/v1/user/register`, formData);
       if (response.status === 200) {
         navigate("/home");
         successNotification("Registration Successful");

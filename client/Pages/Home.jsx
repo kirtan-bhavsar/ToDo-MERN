@@ -41,11 +41,11 @@ const Home = () => {
     try {
       let apiData;
       if(displayCompleteTodos){
-        //  apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=true`);
-         apiData = await axios.get(`/api/v1/todos?isDone=true`);
+         apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=true`,{ withCredentials: true });
+        //  apiData = await axios.get(`/api/v1/todos?isDone=true`);
       }else{
-        //  apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=false`)
-         apiData = await axios.get(`/api/v1/todos?isDone=false`)
+         apiData = await axios.get(`${apiUrl}/api/v1/todos?isDone=false`,{ withCredentials: true })
+        //  apiData = await axios.get(`/api/v1/todos?isDone=false`)
       }
       
       setTodos(apiData.data);
@@ -71,8 +71,8 @@ const Home = () => {
     e.preventDefault();
 
     try {
-      // await axios.post(`${apiUrl}/api/v1/add`, data);
-      await axios.post(`/api/v1/add`, data);
+      await axios.post(`${apiUrl}/api/v1/add`, data,{ withCredentials: true });
+      // await axios.post(`/api/v1/add`, data);
       data.title = "";
       addInputRef.current.focus();
       fetchData();
@@ -84,8 +84,8 @@ const Home = () => {
   const deleteTask = async (id) => {
 
     try {
-      // await axios.delete(`${apiUrl}/api/v1/delete/${id}`);
-      await axios.delete(`/api/v1/delete/${id}`);
+      await axios.delete(`${apiUrl}/api/v1/delete/${id}`,{ withCredentials: true });
+      // await axios.delete(`/api/v1/delete/${id}`);
       fetchData();
       successNotification("Task deleted Successfully");
     } catch (error) {
@@ -108,8 +108,8 @@ const Home = () => {
     setTodos(updatedTodos);
 
     try {
-      // await axios.put(`${apiUrl}/api/v1/edit/${id}`, body);
-      await axios.put(`/api/v1/edit/${id}`, body);
+      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body,{ withCredentials: true });
+      // await axios.put(`/api/v1/edit/${id}`, body);
 
       if(!isDone){
       successNotification("Task completed successfully");
@@ -125,8 +125,8 @@ const Home = () => {
 const getUser = async() => {
 
     try {
-      //  const res = await axios.get(`${apiUrl}/api/v1/user/auth`);
-       const res = await axios.get(`/api/v1/user/auth`);
+       const res = await axios.get(`${apiUrl}/api/v1/user/auth`,{ withCredentials: true });
+      //  const res = await axios.get(`/api/v1/user/auth`);
        setUser({name:res.data.data.name});
     } catch (error) {
         
@@ -140,8 +140,8 @@ const getUser = async() => {
     };
 
     try {
-      // await axios.put(`${apiUrl}/api/v1/edit/${id}`, body);
-      await axios.put(`/api/v1/edit/${id}`, body);
+      await axios.put(`${apiUrl}/api/v1/edit/${id}`, body,{ withCredentials: true });
+      // await axios.put(`/api/v1/edit/${id}`, body);
       fetchData();
       // setEditing(null);
       setEditData({

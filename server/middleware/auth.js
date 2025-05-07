@@ -94,12 +94,13 @@ const auth = async (req, res, next) => {
   }
 
   try {
-    // console.log(token + " token printed");
+    console.log(token + " token printed");
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     req.user = decoded.user;
     next();
   } catch (error) {
+    console.log("Error came in auth.js");
     console.log(error);
     return res.status(500).json({ message: error });
   }

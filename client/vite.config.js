@@ -4,16 +4,16 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  server: {
-    port: 3500,
-    proxy: {
-      "/api/v1": {
-        target: "https://twodo-o071.onrender.com",
-        changeOrigin: true,
-        secure: true,
-      },
-    },
-  },
+  // server: {
+  //   port: 3500,
+  //   proxy: {
+  //     "/api/v1": {
+  //       target: "https://twodo-tehr.onrender.com",
+  //       changeOrigin: true,
+  //       secure: false,
+  //     },
+  //   },
+  // },
 });
 
 // proxy to be added to vite.config.js
