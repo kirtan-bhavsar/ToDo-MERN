@@ -50,8 +50,8 @@ const generateToken = async (res, user) => {
     secure: true, // Ensure this is true for production
     sameSite: "Lax", // Consider 'None' if necessary, but then secure: true is mandatory
     path: "/",
-    domain: ".onrender.com", // Try this for Render subdomains
-    // domain: 'twodo-sg9h.onrender.com', // If the above doesn't work, try this
+    // domain: ".onrender.com", // Try this for Render subdomains
+    domain: "todo-mern-s27j.onrender.com", // If the above doesn't work, try this
     // expires: new Date(Date.now() + 100 * 1000),
   };
 
